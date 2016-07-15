@@ -1,0 +1,9 @@
+nav.top-bar
+  .top-bar-title Snow Globe Theater
+  .top-bar-left
+    ul.menu
+      li.name= link_to("Home", root_path)
+      li.toggle-topbar(menu-icon): a(href="#")Menu
+  .top-bar-right
+    ul.menu
+      = render "layouts/navigation_links"
