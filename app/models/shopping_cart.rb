@@ -26,8 +26,8 @@ class ShoppingCart
 
   def performances_for(event)
     tickets.map(&:performance)
-           .select { |performance| performance.event == event }
-           .uniq.sort_by(&:start_time)
+        .select { |performance| performance.event == event }
+        .uniq.sort_by(&:start_time)
   end
 
   def subtotal_for(performance)

@@ -24,6 +24,10 @@ Metrics/MethodLength:
 Metrics/ParameterLists:
   Enabled: false
 
+Style/AlignParameters:
+  EnforcedStyle: with_fixed_indentation
+  IndentationWidth: 4
+
 Style/CaseEquality:
   Enabled: false
 
@@ -43,14 +47,34 @@ Style/EmptyLinesAroundClassBody:
 Style/EmptyLinesAroundModuleBody:
   EnforcedStyle: empty_lines
 
+Style/FirstParameterIndentation:
+  IndentationWidth: 4
+
 Style/FrozenStringLiteralComment:
   Enabled: false
+
+Style/IndentArray:
+  IndentationWidth: 4
+
+Style/IndentAssignment:
+  IndentationWidth: 4
+
+Style/IndentHash:
+  IndentationWidth: 4
 
 Style/MultilineMethodCallBraceLayout:
   EnforcedStyle: same_line
 
+Style/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+  IndentationWidth: 4
+
 Style/MultilineHashBraceLayout:
   EnforcedStyle: same_line
+
+Style/MultilineOperationIndentation:
+  EnforcedStyle: indented
+  IndentationWidth: 4
 
 Style/SignalException:
   EnforcedStyle: only_raise
