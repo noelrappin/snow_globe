@@ -69,12 +69,9 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-<<<<<<< 444304cb68f73f7b3d78176392f33410d8e02534
     capybara-screenshot (1.0.13)
       capybara (>= 1.0, < 3)
       launchy
-=======
->>>>>>> lockfile
     childprocess (0.5.9)
       ffi (~> 1.0, >= 1.0.11)
     coderay (1.1.1)
@@ -301,10 +298,7 @@ DEPENDENCIES
   bootstrap-sass
   byebug
   capybara
-<<<<<<< 444304cb68f73f7b3d78176392f33410d8e02534
   capybara-screenshot
-=======
->>>>>>> lockfile
   coffee-rails
   database_cleaner
   devise
