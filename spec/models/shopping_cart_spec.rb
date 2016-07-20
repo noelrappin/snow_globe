@@ -2,8 +2,9 @@ require "rails_helper"
 
 describe ShoppingCart do
 
-  let(:user) { instance_double("User") }
   let(:cart) { ShoppingCart.new(user) }
+
+  let(:user) { instance_double("User") }
   let(:romeo) { instance_double("Event", name: "Romeo and Juliet") }
   let(:hamlet) { instance_double("Event", name: "Hamlet") }
   let(:romeo_performance) { instance_spy("Performance", id: 1, event: romeo) }
