@@ -11,7 +11,7 @@ describe ShoppingCartsController do
       allow(@controller).to receive(:current_user).and_return(user)
       allow(Inventory).to receive(:find).with("2").and_return(inventory)
       allow(AddsToCart).to receive(:new).with(
-        inventory: inventory, count: "1", user: user).and_return(action)
+          inventory: inventory, count: "1", user: user).and_return(action)
     end
 
     it "calls add to cart on a successful" do
