@@ -14,10 +14,10 @@ class StripeCharge
   def charge
     return if response.present?
     @response = Stripe::Charge.create(
-      {amount: payment.price.cents, currency: "usd",
-          source: token.id, description: "", 
-          metadata: {reference: payment.reference}},
-      idempotency_key: payment.reference)
+        {amount: payment.price.cents, currency: "usd",
+         source: token.id, description: "",
+         metadata: {reference: payment.reference}},
+        idempotency_key: payment.reference)
   end
 
 end

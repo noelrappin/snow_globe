@@ -1,4 +1,5 @@
 class CreatePaymentLineItems < ActiveRecord::Migration[5.0]
+
   def change
     create_table :payment_line_items do |t|
       t.references :payment, foreign_key: true
@@ -8,4 +9,5 @@ class CreatePaymentLineItems < ActiveRecord::Migration[5.0]
       t.timestamps
     end
   end
+
 end

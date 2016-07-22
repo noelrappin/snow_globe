@@ -28,12 +28,12 @@ class PurchasesCart
 
   def create_payment
     self.payment = Payment.create!(
-      user_id: user.id, price_cents: purchase_amount.cents,
-      status: "created", reference: Payment.generate_reference,
-      payment_method: "stripe")
+        user_id: user.id, price_cents: purchase_amount.cents,
+        status: "created", reference: Payment.generate_reference,
+        payment_method: "stripe")
     tickets.each do |ticket|
       payment.payment_line_items.create!(
-        buyable: ticket, price_cents: ticket.price.cents)
+          buyable: ticket, price_cents: ticket.price.cents)
     end
   end
 
@@ -41,8 +41,8 @@ class PurchasesCart
   def charge
     charge = StripeCharge.charge(token: stripe_token, payment: payment)
     payment.update(
-      status: charge.status, response_id: charge.id,
-      full_response: charge.to_json)
+        status: charge.status, response_id: charge.id,
+        full_response: charge.to_json)
   end
   ## END: code.purchase_charge
 
