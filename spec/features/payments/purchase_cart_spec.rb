@@ -15,9 +15,15 @@ describe "purchasing a cart", :vcr do
     click_on "purchase"
     expect(page).to have_selector(".purchased_ticket", count: 2)
     expect(page).to have_selector(
+<<<<<<< 03829b72767d36f593ad5bed09ab2dbc737eb130
         "#purchased_ticket_#{tickets(:midsummer_bums_1).id}")
     expect(page).to have_selector(
         "#purchased_ticket_#{tickets(:midsummer_bums_2).id}")
+=======
+      "#purchased_ticket_#{tickets(:midsummer_bums_1).id}")
+    expect(page).to have_selector(
+      "#purchased_ticket_#{tickets(:midsummer_bums_2).id}")
+>>>>>>> transfer
   end
 
 end
