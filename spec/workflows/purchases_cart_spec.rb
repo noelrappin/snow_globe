@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe PurchasesCart do
 
-  describe "successful credit card purchase" do
+  describe "successful credit card purchase", :vcr do
     let(:ticket_1) { instance_spy(
         Ticket, status: "waiting", price: Money.new(1500), id: 1) }
     let(:ticket_2) { instance_spy(
@@ -10,23 +10,26 @@ describe PurchasesCart do
     let(:ticket_3) { instance_spy(Ticket, status: "unsold", id: 3) }
     let(:user) { instance_double(
         User, id: 5, tickets_in_cart: [ticket_1, ticket_2]) }
+    let(:token) { StripeToken.new(
+        credit_card_number: "4242424242424242", expiration_month: "12",
+        expiration_year: Time.zone.now.year + 1, cvc: "123") }
     let(:workflow) { PurchasesCart.new(
         user: user, purchase_amount_cents: 3000,
-        stripe_token: instance_spy(StripeToken, token: "tk_not_a_real_token")) }
-    let(:charge) { double(id: "ch_not_an_id", status: "succeeded") }
+        stripe_token: token) }
     let(:attributes) { {user_id: user.id, price_cents: 3000,
                         reference: "fred", payment_method: "stripe",
                         status: "created"} }
-    let(:payment) { instance_double(Payment, succeeded?: true) }
+    let(:payment) { instance_double(
+        Payment, succeeded?: true, price: Money.new(3000),
+                 reference: "fred") }
 
     before(:example) do
       allow(Payment).to receive(:generate_reference).and_return("fred")
       allow(Payment).to receive(:create!).with(attributes).and_return(payment)
       allow(payment).to receive(:update!).with(
-          status: "succeeded", response_id: "ch_not_an_id",
+          status: "succeeded", response_id: a_string_starting_with("ch_"),
           full_response: a_truthy_value)
       expect(payment).to receive(:create_line_items).with([ticket_1, ticket_2])
-      allow(StripeCharge).to receive(:charge).and_return(charge)
       workflow.run
     end
 
