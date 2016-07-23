@@ -23,21 +23,26 @@ h2 Checkout
 
 h3 Credit Card Info
 
-= form_tag(payments_path, class: "form-inline") do
+= form_tag(payments_path, class: "form-inline", id: "payment-form") do
   = hidden_field_tag(:purchase_amount_cents, @cart.total_cost.cents)
+
   .form_group
     = label_tag(:credit_card_number, "Credit Card Number", class: "sr-only")
-    = text_field_tag(:credit_card_number,
-        "", class: "form-control", placeholder: "Credit Card #")
+    input.form-control(placeholder="Credit Card #"
+      data-stripe="number" id="credit_card_number")
+
   .form_group
     = label_tag(:expiration_month, "Month", class: "sr-only")
-    = text_field_tag(:expiration_month,
-        "", class: "form-control", placeholder: "Month")
+    input.form-control(placeholder="Month"
+      data-stripe="exp-month" id="expiration_month")
+
     = label_tag(:expiration_year, "Year", class: "sr-only")
-    = text_field_tag(:expiration_year,
-        "", class: "form-control", placeholder: "Year")
+    input.form-control(placeholder="Year"
+      data-stripe="exp-year" id="expiration_year")
+
     = label_tag(:cvc, "Year", class: "sr-only")
-    = text_field_tag(:cvc, "", class: "form-control", placeholder: "CVC #")
+    input.form-control(placeholder="CVC #" data-stripe="cvc" id="cvc")
+
   .form_group
     = submit_tag("Purchase Cart", class: "btn btn-default", id: "purchase")
 //##START: code.credit_card_form

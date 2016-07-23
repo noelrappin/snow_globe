@@ -92,14 +92,18 @@ http_interactions:
           "type": "card",
           "used": false
         }
-    http_version: 
+    http_version:
   recorded_at: Sat, 23 Jul 2016 16:41:21 GMT
 - request:
     method: post
     uri: https://api.stripe.com/v1/charges
     body:
       encoding: UTF-8
+<<<<<<< cc45fc0cb38da44c4cd59e4ea97eb09fc076de2e
       string: amount=3000&currency=usd&description=&metadata[reference]=a1db0680d85dac7e33c8&source=tok_18aTBlDTh2DhiR4RspadudBJ
+=======
+      string: amount=3000&currency=usd&description=&metadata[reference]=fred&source=tok_18aEfQDTh2DhiR4RMQsWeyP6
+>>>>>>> scratch for sprockets beta and bootstrap
     headers:
       Accept:
       - "*/*"
@@ -116,9 +120,15 @@ http_interactions:
         Noels-Computer.local 15.6.0 Darwin Kernel Version 15.6.0: Thu Jun 23 18:25:34
         PDT 2016; root:xnu-3248.60.10~1/RELEASE_X86_64 x86_64","hostname":"Noels-Computer.local"}'
       Idempotency-Key:
+<<<<<<< cc45fc0cb38da44c4cd59e4ea97eb09fc076de2e
       - a1db0680d85dac7e33c8
       Content-Length:
       - '114'
+=======
+      - fred
+      Content-Length:
+      - '98'
+>>>>>>> scratch for sprockets beta and bootstrap
       Host:
       - api.stripe.com
   response:
@@ -129,11 +139,19 @@ http_interactions:
       Server:
       - nginx
       Date:
+<<<<<<< cc45fc0cb38da44c4cd59e4ea97eb09fc076de2e
       - Sat, 23 Jul 2016 16:41:22 GMT
       Content-Type:
       - application/json
       Content-Length:
       - '1510'
+=======
+      - Sat, 23 Jul 2016 01:11:01 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '1494'
+>>>>>>> scratch for sprockets beta and bootstrap
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -147,11 +165,19 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Idempotency-Key:
+<<<<<<< cc45fc0cb38da44c4cd59e4ea97eb09fc076de2e
       - a1db0680d85dac7e33c8
       Original-Request:
       - req_8sDdxu8XrSZHpm
       Request-Id:
       - req_8sDdxu8XrSZHpm
+=======
+      - fred
+      Original-Request:
+      - req_8rycFzNRkOESbV
+      Request-Id:
+      - req_8rycFzNRkOESbV
+>>>>>>> scratch for sprockets beta and bootstrap
       Stripe-Version:
       - '2016-07-06'
       Strict-Transport-Security:
@@ -160,14 +186,24 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
+<<<<<<< cc45fc0cb38da44c4cd59e4ea97eb09fc076de2e
           "id": "ch_18aTBmDTh2DhiR4RypeyWVNg",
+=======
+          "id": "ch_18aEfQDTh2DhiR4RQf9LDCej",
+>>>>>>> scratch for sprockets beta and bootstrap
           "object": "charge",
           "amount": 3000,
           "amount_refunded": 0,
           "application_fee": null,
+<<<<<<< cc45fc0cb38da44c4cd59e4ea97eb09fc076de2e
           "balance_transaction": "txn_18aTBmDTh2DhiR4Rmnm7s1lv",
           "captured": true,
           "created": 1469292082,
+=======
+          "balance_transaction": "txn_18aEfRDTh2DhiR4RlKc2WrI5",
+          "captured": true,
+          "created": 1469236260,
+>>>>>>> scratch for sprockets beta and bootstrap
           "currency": "usd",
           "customer": null,
           "description": "",
@@ -179,7 +215,11 @@ http_interactions:
           "invoice": null,
           "livemode": false,
           "metadata": {
+<<<<<<< cc45fc0cb38da44c4cd59e4ea97eb09fc076de2e
             "reference": "a1db0680d85dac7e33c8"
+=======
+            "reference": "fred"
+>>>>>>> scratch for sprockets beta and bootstrap
           },
           "order": null,
           "paid": true,
@@ -191,11 +231,19 @@ http_interactions:
             "data": [],
             "has_more": false,
             "total_count": 0,
+<<<<<<< cc45fc0cb38da44c4cd59e4ea97eb09fc076de2e
             "url": "/v1/charges/ch_18aTBmDTh2DhiR4RypeyWVNg/refunds"
           },
           "shipping": null,
           "source": {
             "id": "card_18aTBlDTh2DhiR4RE4Dgzu7z",
+=======
+            "url": "/v1/charges/ch_18aEfQDTh2DhiR4RQf9LDCej/refunds"
+          },
+          "shipping": null,
+          "source": {
+            "id": "card_18aEfQDTh2DhiR4RzFMgGEGy",
+>>>>>>> scratch for sprockets beta and bootstrap
             "object": "card",
             "address_city": null,
             "address_country": null,
@@ -223,6 +271,10 @@ http_interactions:
           "statement_descriptor": null,
           "status": "succeeded"
         }
-    http_version: 
+    http_version:
+<<<<<<< cc45fc0cb38da44c4cd59e4ea97eb09fc076de2e
   recorded_at: Sat, 23 Jul 2016 16:41:22 GMT
+=======
+  recorded_at: Sat, 23 Jul 2016 01:11:01 GMT
+>>>>>>> scratch for sprockets beta and bootstrap
 recorded_with: VCR 3.0.3

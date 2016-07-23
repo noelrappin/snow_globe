@@ -2,8 +2,14 @@ machine:
   ruby:
     version: 2.3.1
 
+dependencies:
+  post:
+    - npm install -g eslint
+
 test:
   override:
+    - eslint app/assets/javascripts/**.es6
+    - eslint spec/javascripts/**.es6
     - bundle exec rubocop
       --config .rubocop.yml
     - bundle exec slim-lint app/views
