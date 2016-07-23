@@ -1,11 +1,7 @@
-<<<<<<< 03829b72767d36f593ad5bed09ab2dbc737eb130
 require "rails_helper"
 
 RSpec.describe PaymentLineItem, type: :model do
+<<<<<<< 2463f411049e0d9e06e04ac70886a1d6ffde3795
 =======
-require 'rails_helper'
-
-RSpec.describe PaymentLineItem, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
->>>>>>> transfer
+>>>>>>> tests pass
 end
