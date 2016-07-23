@@ -1,6 +1,6 @@
 - flash.each do |name, msg|
   - if msg.is_a?(String)
-    .alert-box.round(data-alert
-        class="#{name.to_s == "notice" ? "success" : "alert"}")
-      div= msg
-      a.close(href="#") &times;
+    .alert(class="alert-#{name.to_s == "notice" ? "success" : "danger"}")
+      button.close(
+        type="button" data-dismiss="alert" aria-hidden="true") &times;
+      div(id="flash_#{name}")= msg

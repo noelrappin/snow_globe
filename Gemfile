@@ -3,9 +3,10 @@ ruby "2.3.1"
 gem "rails", "~> 5.0.0"
 
 gem "awesome_print"
+gem "babel-transpiler"
+gem "bootstrap-sass"
 gem "coffee-rails"
 gem "devise"
-gem "foundation-rails"
 gem "jbuilder"
 gem "jquery-rails"
 gem "pg"
@@ -14,6 +15,7 @@ gem "pundit"
 gem "sass-rails"
 gem "simple_form"
 gem "slim-rails"
+gem "sprockets", github: "rails/sprockets"
 gem "turbolinks"
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "uglifier"
@@ -40,9 +42,9 @@ group :development, :test do
 end
 
 group :test do
+  gem "capybara-screenshot"
   gem "capybara"
   gem "database_cleaner"
   gem "launchy"
   gem "selenium-webdriver"
-  gem "capybara-screenshot"
 end

@@ -10,14 +10,11 @@ html(lang="en")
       media: "all", "data-turbolinks-track" => true)
     = javascript_include_tag("application", "data-turbolinks-track" => true)
     = csrf_meta_tags
+
   body
     header
       = render "layouts/navigation"
     main(role="main")
-      .row
-        .large-12.columns
-          = render "layouts/messages"
-
-      .row
-        .large-12.columns
-          = yield
+      .container
+        = render "layouts/messages"
+        = yield
