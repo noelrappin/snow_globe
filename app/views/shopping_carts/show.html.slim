@@ -27,15 +27,15 @@ h3 Credit Card Info
   = hidden_field_tag(:purchase_amount_cents, @cart.total_cost.cents)
   .form_group
     = label_tag(:credit_card_number, "Credit Card Number", class: "sr-only")
-    = text_field_tag(:credit_card_number, "",
-      class: "form-control", placeholder: "Credit Card #")
+    = text_field_tag(:credit_card_number,
+        "", class: "form-control", placeholder: "Credit Card #")
   .form_group
     = label_tag(:expiration_month, "Month", class: "sr-only")
-    = text_field_tag(:expiration_month, "",
-      class: "form-control", placeholder: "Month")
+    = text_field_tag(:expiration_month,
+        "", class: "form-control", placeholder: "Month")
     = label_tag(:expiration_year, "Year", class: "sr-only")
-    = text_field_tag(:expiration_year, "", class: "form-control",
-      placeholder: "Year")
+    = text_field_tag(:expiration_year,
+        "", class: "form-control", placeholder: "Year")
     = label_tag(:cvc, "Year", class: "sr-only")
     = text_field_tag(:cvc, "", class: "form-control", placeholder: "CVC #")
   .form_group
