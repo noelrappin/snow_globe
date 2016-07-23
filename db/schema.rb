@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 20160721043415) do
     t.integer  "access"
     t.integer  "price_cents",    default: 0,     null: false
     t.string   "price_currency", default: "USD", null: false
+    t.string   "reference"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.index ["performance_id"], name: "index_tickets_on_performance_id", using: :btree

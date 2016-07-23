@@ -18,9 +18,9 @@ class PaymentsController < ApplicationController
   end
 
   private def card_params
-    params.slice(
+    params.permit(
         :credit_card_number, :expiration_month,
-        :expiration_year, :cvc).symbolize_keys
+        :expiration_year, :cvc).to_h.symbolize_keys
   end
 
 end

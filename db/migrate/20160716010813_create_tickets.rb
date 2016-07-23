@@ -7,7 +7,7 @@ class CreateTickets < ActiveRecord::Migration[5.0]
       t.integer :status
       t.integer :access
       t.monetize :price
-
+      t.string :reference
       t.timestamps
     end
   end
