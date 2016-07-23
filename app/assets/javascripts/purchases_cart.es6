@@ -1,18 +1,22 @@
 // # START: checkout_form
 class CheckoutForm {
 
-  form() { return $("#payment-form"); }
+  form() { return $("#payment-form") }
 
-  button() { return this.form().find(".btn"); }
+  button() { return this.form().find(".btn") }
 
-  disableButton() { this.button().prop("disabled", true); }
+  disableButton() { this.button().prop("disabled", true) }
 
-  submit() { this.form().get(0).submit(); }
+  isButtonEnabled() { return this.button().prop("disabled") }
+
+  submit() { this.form().get(0).submit() }
 
   appendHidden(name, value) {
-    let field = $("<input>").attr("type", "hidden")
-      .attr("name", name).val(value);
-    this.form().append(field);
+    const field = $("<input>")
+      .attr("type", "hidden")
+      .attr("name", name)
+      .val(value)
+    this.form().append(field)
   }
 }
 // # END: checkout_form
@@ -20,18 +24,18 @@ class CheckoutForm {
 // # START: token_handler
 class TokenHandler {
   static handle(status, response) {
-    new TokenHandler(status, response).handle();
+    new TokenHandler(status, response).handle()
   }
 
   constructor(status, response) {
-    this.checkoutForm = new CheckoutForm();
-    this.status = status;
-    this.response = response;
+    this.checkoutForm = new CheckoutForm()
+    this.status = status
+    this.response = response
   }
 
   handle() {
-    this.checkoutForm.appendHidden("stripe_token", this.response.id);
-    this.checkoutForm.submit();
+    this.checkoutForm.appendHidden("stripe_token", this.response.id)
+    this.checkoutForm.submit()
   }
 }
 // # END: token_handler
@@ -40,24 +44,27 @@ class TokenHandler {
 class StripeForm {
 
   constructor() {
-    this.checkoutForm = new CheckoutForm();
-    this.initSubmitHandler();
+    this.checkoutForm = new CheckoutForm()
+    this.initSubmitHandler()
   }
 
   initSubmitHandler() {
-    this.checkoutForm.form().submit((event) => { this.handleSubmit(event); });
+    this.checkoutForm.form().submit((event) => { this.handleSubmit(event) })
   }
 
   handleSubmit(event) {
-    event.preventDefault();
-    this.checkoutForm.disableButton();
-    Stripe.card.createToken(this.checkoutForm.form(), TokenHandler.handle);
-    return false;
+    event.preventDefault()
+    if (!this.checkoutForm.isButtonEnabled()) {
+      return
+    }
+    this.checkoutForm.disableButton()
+    Stripe.card.createToken(this.checkoutForm.form(), TokenHandler.handle)
+    return false
   }
 }
 // # END: stripe_form
 
 
 // # START: jQuery
-$(() => { return new StripeForm(); });
+$(() => new StripeForm())
 // # END: jQuery

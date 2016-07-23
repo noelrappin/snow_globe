@@ -1,6 +1,8 @@
 require "rails_helper"
 
-describe "purchasing a cart", :vcr do
+# START: describe_with_js
+describe "purchasing a cart", :js, :vcr do
+  # END: describe_with_js
   fixtures :all
 
   it "can add a purchase to a cart" do
