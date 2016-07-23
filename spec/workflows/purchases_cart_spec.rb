@@ -15,8 +15,8 @@ describe PurchasesCart do
         stripe_token: instance_spy(StripeToken, token: "tk_not_a_real_token")) }
     let(:charge) { double(id: "ch_not_an_id", status: "succeeded") }
     let(:attributes) { {user_id: user.id, price_cents: 3000,
-                       reference: "fred", payment_method: "stripe",
-                       status: "created"} }
+                        reference: "fred", payment_method: "stripe",
+                        status: "created"} }
     let(:payment) { instance_double(Payment, succeeded?: true) }
 
     before(:example) do
