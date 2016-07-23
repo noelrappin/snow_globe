@@ -13,11 +13,7 @@ RSpec.describe Payment, type: :model do
     end
 
     it "avoids duplicates" do
-<<<<<<< 03829b72767d36f593ad5bed09ab2dbc737eb130
       create(:payment, reference: "first", user: create(:user))
-=======
-      create(:payment, reference: "first", user: create(:user))
->>>>>>> tests pass
       expect(Payment.generate_reference).to eq("second")
     end
 
