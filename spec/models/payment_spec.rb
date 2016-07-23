@@ -13,7 +13,7 @@ RSpec.describe Payment, type: :model do
     end
 
     it "avoids duplicates" do
-      create(:payment, reference: "first")
+      create(:payment, reference: "first", user: create(:user))
       expect(Payment.generate_reference).to eq("second")
     end
 
