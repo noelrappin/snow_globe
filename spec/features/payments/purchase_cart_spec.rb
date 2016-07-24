@@ -2,7 +2,7 @@ require "rails_helper"
 require "fake_stripe"
 
 # START: describe_with_js
-describe "purchasing a cart", :js, :fake_stripe do
+describe "purchasing a cart", :js do
   # END: describe_with_js
   fixtures :all
 
