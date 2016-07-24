@@ -7,7 +7,7 @@ class CheckoutForm {
 
   disableButton() { this.button().prop("disabled", true) }
 
-  isButtonEnabled() { return this.button().prop("disabled") }
+  isButtonDisabled() { return this.button().prop("disabled") }
 
   submit() { this.form().get(0).submit() }
 
@@ -54,7 +54,7 @@ class StripeForm {
 
   handleSubmit(event) {
     event.preventDefault()
-    if (!this.checkoutForm.isButtonEnabled()) {
+    if (this.checkoutForm.isButtonDisabled()) {
       return
     }
     this.checkoutForm.disableButton()

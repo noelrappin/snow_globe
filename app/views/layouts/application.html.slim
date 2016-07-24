@@ -9,10 +9,7 @@ html(lang="en")
     / START: code.add_stripe
     = stylesheet_link_tag("application",
       media: "all", "data-turbolinks-track" => true)
-    - if Rails.env.production? || Rails.env.test?
-      = javascript_include_tag("https://js.stripe.com/v2/")
-    - else
-      = javascript_include_tag("https://js.stripe.com/v2/stripe-debug.js")
+    = javascript_include_tag("#{STRIPE_JS_HOST}/v2/#{STRIPE_JS_FILE}")
     = javascript_include_tag("application", "data-turbolinks-track" => true)
 
     javascript:

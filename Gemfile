@@ -48,8 +48,11 @@ group :test do
   gem "capybara-screenshot"
   gem "capybara"
   gem "database_cleaner"
+  gem "fake_stripe"
   gem "launchy"
+  gem "poltergeist"
   gem "selenium-webdriver"
+  gem "sinatra", github: "sinatra/sinatra"
   gem "vcr"
   gem "webmock"
 end

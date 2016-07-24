@@ -1,9 +1,19 @@
 require "rails_helper"
+require "fake_stripe"
 
 # START: describe_with_js
-describe "purchasing a cart", :js, :vcr do
+describe "purchasing a cart", :js, :fake_stripe do
   # END: describe_with_js
   fixtures :all
+
+  before(:each) do
+    FakeStripe.stub_stripe
+  end
+
+  after(:each) do
+    WebMock.reset!
+    Stripe.api_key = Rails.application.secrets.stripe_secret_key
+  end
 
   it "can add a purchase to a cart" do
     tickets(:midsummer_bums_1).place_in_cart_for(users(:buyer))
