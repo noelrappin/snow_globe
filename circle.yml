@@ -3,6 +3,9 @@ machine:
     version: 2.3.1
 
 dependencies:
+  pre:
+    - echo "export rvm_ignore_gemsets_flag=1" >> ~/.rvmrc
+    - gem install bundler
   post:
     - npm install -g eslint
 
