@@ -55,7 +55,7 @@ class StripeForm {
   handleSubmit(event) {
     event.preventDefault()
     if (this.checkoutForm.isButtonDisabled()) {
-      return
+      return false
     }
     this.checkoutForm.disableButton()
     Stripe.card.createToken(this.checkoutForm.form(), TokenHandler.handle)
