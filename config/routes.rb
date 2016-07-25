@@ -5,4 +5,8 @@ Rails.application.routes.draw do
   resource :shopping_cart
   resources :payments
   resources :users
+
+  # START: paypal
+  get "paypal/approved", to: "pay_pal_payments#approved"
+  # END: paypal
 end
