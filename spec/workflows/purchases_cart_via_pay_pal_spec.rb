@@ -16,7 +16,8 @@ describe PurchasesCartViaPayPal, :vcr, :aggregate_failures do
                  performance: performance) }
     let(:user) { create(:user) }
     let(:workflow) { PurchasesCartViaPayPal.new(
-        user: user, purchase_amount_cents: 3000) }
+        user: user, purchase_amount_cents: 3000,
+        expected_ticket_ids: "1 2") }
 
     before(:example) do
       [ticket_1, ticket_2].each { |t| t.place_in_cart_for(user) }

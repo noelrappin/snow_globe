@@ -9,7 +9,7 @@ class Payment < ActiveRecord::Base
 
   monetize :price_cents
 
-  enum status: {created: 0, succeeded: 1, pending: 2}
+  enum status: {created: 0, succeeded: 1, pending: 2, failed: 3}
 
   def total_cost
     tickets.map(&:price).sum
@@ -20,6 +20,10 @@ class Payment < ActiveRecord::Base
       payment_line_items.create!(
           buyable: ticket, price_cents: ticket.price.cents)
     end
+  end
+
+  def sorted_ticket_ids
+    tickets.map(&:id).sort
   end
 
 end

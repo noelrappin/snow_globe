@@ -21,8 +21,7 @@ describe "purchasing a cart", :js do
     login_as(users(:buyer), scope: :user)
     visit shopping_cart_path
     fill_in :credit_card_number, with: "4242 4242 4242 4242"
-    fill_in :expiration_month, with: "12"
-    fill_in :expiration_year, with: Time.current.year + 1
+    fill_in :expiration_date, with: "12 / #{Time.current.year + 1}"
     fill_in :cvc, with: "123"
     click_on "purchase"
     expect(page).to have_selector(".purchased_ticket", count: 2)

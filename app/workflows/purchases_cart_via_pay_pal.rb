@@ -19,9 +19,11 @@ class PurchasesCartViaPayPal < PurchasesCart
   end
 
   def purchase
+    return unless @continue
     @pay_pal_payment = PayPalPayment.new(payment: payment)
     payment.update(response_id: pay_pal_payment.response_id)
     payment.pending!
+    reverse_purchase if payment.failed?
   end
 
 end
