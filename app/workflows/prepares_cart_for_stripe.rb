@@ -18,6 +18,10 @@ class PreparesCartForStripe < PreparesCart
     ExecutesStripePurchaseJob.perform_later(payment, stripe_token.id)
   end
 
+  def on_failure
+    unpurchase_tickets
+  end
+
   def unpurchase_tickets
     tickets.each(&:waiting!)
   end

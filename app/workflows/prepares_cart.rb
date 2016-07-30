@@ -30,15 +30,23 @@ class PreparesCart
     Payment.find_by(reference: payment_reference)
   end
 
+  # START: run_with_exception
   def run
     Payment.transaction do
-      return if existing_payment
-      return unless pre_purchase_valid?
+      raise PreExistingPurchaseException.new(purchase) if existing_payment
+      raise ChargeSetupValidityException.new(
+          user: user,
+          expected_purchase_cents: purchase_amount.to_i,
+          expected_ticket_ids: expected_ticket_ids) unless pre_purchase_valid?
       update_tickets
       create_payment
-      success? ? on_success : on_failure
+      on_success
     end
+  rescue
+    on_failure
+    raise
   end
+  # END: run_with_exception
 
   def redirect_on_success_url
     nil
