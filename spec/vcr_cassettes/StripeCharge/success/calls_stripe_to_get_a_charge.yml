@@ -33,7 +33,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 28 Jul 2016 05:02:12 GMT
+      - Sat, 30 Jul 2016 15:38:12 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -51,7 +51,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_8tuTxSZscZCY6E
+      - req_8upBlhTDmXryov
       Stripe-Version:
       - '2016-07-06'
       Strict-Transport-Security:
@@ -60,10 +60,10 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "tok_18c6etDTh2DhiR4RH0TmBNpg",
+          "id": "tok_18czXUDTh2DhiR4RazRKBwNF",
           "object": "token",
           "card": {
-            "id": "card_18c6etDTh2DhiR4RSwrmOvQm",
+            "id": "card_18czXUDTh2DhiR4RO56uwXVl",
             "object": "card",
             "address_city": null,
             "address_country": null,
@@ -87,19 +87,19 @@ http_interactions:
             "tokenization_method": null
           },
           "client_ip": "24.13.236.96",
-          "created": 1469682131,
+          "created": 1469893092,
           "livemode": false,
           "type": "card",
           "used": false
         }
     http_version: 
-  recorded_at: Thu, 28 Jul 2016 05:02:12 GMT
+  recorded_at: Sat, 30 Jul 2016 15:38:13 GMT
 - request:
     method: post
     uri: https://api.stripe.com/v1/charges
     body:
       encoding: UTF-8
-      string: amount=3000&currency=usd&description=&metadata[reference]=bc42b25e8dc84359854c&source=tok_18c6etDTh2DhiR4RH0TmBNpg
+      string: amount=3000&currency=usd&description=&metadata[reference]=83e0cd0e4141dbc4b448&source=tok_18czXUDTh2DhiR4RazRKBwNF
     headers:
       Accept:
       - "*/*"
@@ -116,7 +116,7 @@ http_interactions:
         Noels-Computer.local 15.6.0 Darwin Kernel Version 15.6.0: Thu Jun 23 18:25:34
         PDT 2016; root:xnu-3248.60.10~1/RELEASE_X86_64 x86_64","hostname":"Noels-Computer.local"}'
       Idempotency-Key:
-      - bc42b25e8dc84359854c
+      - 83e0cd0e4141dbc4b448
       Content-Length:
       - '114'
       Host:
@@ -129,7 +129,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 28 Jul 2016 05:02:13 GMT
+      - Sat, 30 Jul 2016 15:38:13 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -147,11 +147,11 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Idempotency-Key:
-      - bc42b25e8dc84359854c
+      - 83e0cd0e4141dbc4b448
       Original-Request:
-      - req_8tuTpyWOxItrtS
+      - req_8upBtRSI2GP1fU
       Request-Id:
-      - req_8tuTpyWOxItrtS
+      - req_8upBtRSI2GP1fU
       Stripe-Version:
       - '2016-07-06'
       Strict-Transport-Security:
@@ -160,14 +160,14 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "ch_18c6evDTh2DhiR4R8jhQIgDH",
+          "id": "ch_18czXVDTh2DhiR4RrWzn4FOe",
           "object": "charge",
           "amount": 3000,
           "amount_refunded": 0,
           "application_fee": null,
-          "balance_transaction": "txn_18c6evDTh2DhiR4RdVDu2quv",
+          "balance_transaction": "txn_18czXVDTh2DhiR4RmOxuDEqO",
           "captured": true,
-          "created": 1469682133,
+          "created": 1469893093,
           "currency": "usd",
           "customer": null,
           "description": "",
@@ -179,7 +179,7 @@ http_interactions:
           "invoice": null,
           "livemode": false,
           "metadata": {
-            "reference": "bc42b25e8dc84359854c"
+            "reference": "83e0cd0e4141dbc4b448"
           },
           "order": null,
           "paid": true,
@@ -191,11 +191,11 @@ http_interactions:
             "data": [],
             "has_more": false,
             "total_count": 0,
-            "url": "/v1/charges/ch_18c6evDTh2DhiR4R8jhQIgDH/refunds"
+            "url": "/v1/charges/ch_18czXVDTh2DhiR4RrWzn4FOe/refunds"
           },
           "shipping": null,
           "source": {
-            "id": "card_18c6etDTh2DhiR4RSwrmOvQm",
+            "id": "card_18czXUDTh2DhiR4RO56uwXVl",
             "object": "card",
             "address_city": null,
             "address_country": null,
@@ -224,5 +224,5 @@ http_interactions:
           "status": "succeeded"
         }
     http_version: 
-  recorded_at: Thu, 28 Jul 2016 05:02:13 GMT
+  recorded_at: Sat, 30 Jul 2016 15:38:14 GMT
 recorded_with: VCR 3.0.3

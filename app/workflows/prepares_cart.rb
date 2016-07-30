@@ -1,5 +1,4 @@
-## START: purchases_cart_init
-class PurchasesCart
+class PreparesCart
 
   attr_accessor :user, :purchase_amount_cents,
       :purchase_amount, :success,
@@ -15,23 +14,12 @@ class PurchasesCart
     @expected_ticket_ids = expected_ticket_ids.split(" ").map(&:to_i).sort
     @payment_reference = payment_reference || Payment.generate_reference
   end
-  ## END: purchases_cart_init
-
-  def run
-    Payment.transaction do
-      pre_purchase
-      purchase
-      post_purchase
-      @success = @continue
-    end
-  end
 
   def pre_purchase_valid?
     purchase_amount == tickets.map(&:price).sum &&
         expected_ticket_ids == tickets.map(&:id).sort
   end
 
-  ## START: purchases_pre_purchase
   def tickets
     @tickets ||= @user.tickets_in_cart.select do |ticket|
       ticket.payment_reference == payment_reference
@@ -42,29 +30,26 @@ class PurchasesCart
     Payment.find_by(reference: payment_reference)
   end
 
-  def pre_purchase
-    return true if existing_payment
-    unless pre_purchase_valid?
-      @continue = false
-      return
+  def run
+    Payment.transaction do
+      return if existing_payment
+      return unless pre_purchase_valid?
+      update_tickets
+      create_payment
+      success? ? on_success : on_failure
     end
-    update_tickets
-    create_payment
-    @continue = true
   end
-  # END: purchases_pre_purchase
 
   def redirect_on_success_url
     nil
   end
 
-  ## START: create_payment
   def create_payment
     self.payment = existing_payment || Payment.new
     payment.update!(payment_attributes)
     payment.create_line_items(tickets)
+    @success = payment.valid?
   end
-  ## END: create_payment
 
   def payment_attributes
     {user_id: user.id, price_cents: purchase_amount.cents,
@@ -75,27 +60,8 @@ class PurchasesCart
     success
   end
 
-  ## START: reverse_purchase
   def unpurchase_tickets
     tickets.each(&:waiting!)
   end
-
-  def reverse_purchase
-    unpurchase_tickets
-    @continue = false
-  end
-  ## END: reverse_purchase
-
-  ## START: purchases_post_charge
-
-  def calculate_success
-    payment.succeeded?
-  end
-
-  def post_purchase
-    return unless @continue
-    @continue = calculate_success
-  end
-  ## END: purchases_post_charge
 
 end
