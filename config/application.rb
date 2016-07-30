@@ -21,6 +21,8 @@ module SnowGlobe
       g.fixture_replacement :factory_girl, dir: "spec/factories"
     end
 
+    config.active_job.queue_adapter = :delayed_job
+
     # Settings in config/environments/* take precedence over those specified
     # here.
     # Application configuration should go into files in config/initializers
