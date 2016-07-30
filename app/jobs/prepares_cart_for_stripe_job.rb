@@ -2,27 +2,15 @@ class PreparesCartForStripeJob < ApplicationJob
 
   queue_as :default
 
-  # START: rescue_from
-  rescue_from(ChargeSetupValidityException) do |exception|
-    PaymentMailer.notify_failure(exception).deliver_later
-    Rollbar.error(exception)
-  end
-
-  rescue_from(PreExistingPaymentException) do |exception|
-    Rollbar.error(exception)
-  end
-  # END: rescue_from
-
-  def perform(user:, purchase_amount_cents:, expected_ticket_ids:,
-      payment_reference:, params:)
+  def perform(user:, params:, payment_reference:)
     token = StripeToken.new(**card_params(params))
     user.tickets_in_cart.each do |ticket|
       ticket.update(payment_reference: payment_reference)
     end
-    purchases_cart_workflow = PreparesCartForStripe.new(
+    purchases_cart_workflow = PrepareForCartPurchaseViaStripe.new(
         user: user, stripe_token: token,
-        purchase_amount_cents: purchase_amount_cents,
-        expected_ticket_ids: expected_ticket_ids,
+        purchase_amount_cents: params[:purchase_amount_cents],
+        expected_ticket_ids: params[:ticket_ids],
         payment_reference: payment_reference)
     purchases_cart_workflow.run
   end
