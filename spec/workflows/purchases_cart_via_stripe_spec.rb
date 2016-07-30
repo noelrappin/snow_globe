@@ -7,14 +7,15 @@ describe PurchasesCartViaStripe, :vcr, :aggregate_failures do
   let(:reference) { Payment.generate_reference }
   let(:ticket_1) { instance_spy(
       Ticket, status: "waiting",
-      price: Money.new(1500), id: 1,
-      payment_reference: "reference") }
+              price: Money.new(1500), id: 1,
+              payment_reference: "reference") }
   let(:ticket_2) { instance_spy(
       Ticket, status: "waiting",
-      price: Money.new(1500), id: 2,
-      payment_reference: "reference") }
-  let(:ticket_3) { instance_spy(Ticket, status: "unsold",
-    id: 3, payment_reference: "reference") }
+              price: Money.new(1500), id: 2,
+              payment_reference: "reference") }
+  let(:ticket_3) { instance_spy(
+      Ticket, status: "unsold",
+              id: 3, payment_reference: "reference") }
   let(:workflow) { PurchasesCartViaStripe.new(
       user: user, purchase_amount_cents: 3000,
       stripe_token: token, expected_ticket_ids: "1 2",
