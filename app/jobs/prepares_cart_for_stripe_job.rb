@@ -1,4 +1,4 @@
-class PurchasesCartJob < ApplicationJob
+class PreparesCartForStripeJob < ApplicationJob
 
   queue_as :default
 
@@ -8,7 +8,7 @@ class PurchasesCartJob < ApplicationJob
     user.tickets_in_cart.each do |ticket|
       ticket.update(payment_reference: payment_reference)
     end
-    purchases_cart_workflow = StripePurchasesCart.new(
+    purchases_cart_workflow = PrepareForCartPurchaseViaStripe.new(
         user: user, stripe_token: token,
         purchase_amount_cents: purchase_amount_cents,
         expected_ticket_ids: expected_ticket_ids,

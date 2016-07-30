@@ -1,4 +1,4 @@
-class PurchasesCartViaStripe < PurchasesCart
+class PreparesCartForStripe < PreparesCart
 
   attr_accessor :stripe_token, :stripe_charge
 
@@ -14,16 +14,13 @@ class PurchasesCartViaStripe < PurchasesCart
     tickets.each(&:purchased!)
   end
 
-  # START: charge
-  def purchase
-    return unless @continue
-    return if payment.response_id.present?
-    @stripe_charge = StripeCharge.new(token: stripe_token, payment: payment)
-    @stripe_charge.charge
-    payment.update!(@stripe_charge.payment_attributes)
-    reverse_purchase if payment.failed?
+  def on_success
+    ExecutesStripePurchaseJob.perform_later(payment, stripe_token.id)
   end
-  ## END: charge
+
+  def unpurchase_tickets
+    tickets.each(&:waiting!)
+  end
 
   def purchase_attributes
     super.merge(payment_method: "stripe")

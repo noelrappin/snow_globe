@@ -24,7 +24,7 @@ class PaymentsController < ApplicationController
   end
 
   private def paypal_workflow
-    workflow = PurchasesCartViaPayPal.new(
+    workflow = PreparesCartForPayPal.new(
         user: current_user,
         purchase_amount_cents: params[:purchase_amount_cents],
         expected_ticket_ids: params[:ticket_ids])

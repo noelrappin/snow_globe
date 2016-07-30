@@ -33,7 +33,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Sun, 24 Jul 2016 02:30:26 GMT
+      - Sat, 30 Jul 2016 15:38:06 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -51,7 +51,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_8sN8RiyfwedqlB
+      - req_8upBsC96dTR0k4
       Stripe-Version:
       - '2016-07-06'
       Strict-Transport-Security:
@@ -60,10 +60,10 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "tok_18acNqDTh2DhiR4RDmzMAt7o",
+          "id": "tok_18czXODTh2DhiR4RP16AYUbS",
           "object": "token",
           "card": {
-            "id": "card_18acNqDTh2DhiR4RMyqAZWu5",
+            "id": "card_18czXODTh2DhiR4RGwVwWygp",
             "object": "card",
             "address_city": null,
             "address_country": null,
@@ -87,16 +87,16 @@ http_interactions:
             "tokenization_method": null
           },
           "client_ip": "24.13.236.96",
-          "created": 1469327426,
+          "created": 1469893086,
           "livemode": false,
           "type": "card",
           "used": false
         }
     http_version: 
-  recorded_at: Sun, 24 Jul 2016 02:30:26 GMT
+  recorded_at: Sat, 30 Jul 2016 15:38:06 GMT
 - request:
     method: get
-    uri: https://api.stripe.com/v1/tokens/tok_18acNqDTh2DhiR4RDmzMAt7o
+    uri: https://api.stripe.com/v1/tokens/tok_18czXODTh2DhiR4RP16AYUbS
     body:
       encoding: US-ASCII
       string: ''
@@ -125,7 +125,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Sun, 24 Jul 2016 02:30:26 GMT
+      - Sat, 30 Jul 2016 15:38:06 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -143,7 +143,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_8sN89VH1kFCJcJ
+      - req_8upBQD5PNAle2c
       Stripe-Version:
       - '2016-07-06'
       Strict-Transport-Security:
@@ -152,10 +152,10 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "tok_18acNqDTh2DhiR4RDmzMAt7o",
+          "id": "tok_18czXODTh2DhiR4RP16AYUbS",
           "object": "token",
           "card": {
-            "id": "card_18acNqDTh2DhiR4RMyqAZWu5",
+            "id": "card_18czXODTh2DhiR4RGwVwWygp",
             "object": "card",
             "address_city": null,
             "address_country": null,
@@ -179,11 +179,11 @@ http_interactions:
             "tokenization_method": null
           },
           "client_ip": "24.13.236.96",
-          "created": 1469327426,
+          "created": 1469893086,
           "livemode": false,
           "type": "card",
           "used": false
         }
     http_version: 
-  recorded_at: Sun, 24 Jul 2016 02:30:26 GMT
+  recorded_at: Sat, 30 Jul 2016 15:38:06 GMT
 recorded_with: VCR 3.0.3

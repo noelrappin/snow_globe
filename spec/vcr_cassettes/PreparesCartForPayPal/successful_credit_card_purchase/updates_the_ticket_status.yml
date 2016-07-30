@@ -15,7 +15,7 @@ http_interactions:
       Authorization:
       - Basic RUJXS2psRUxLTVlxUk5RNnNZdkZvNjRGdGFSTFJSNUJkSEVFU21oYTQ5VE06RU80MjJkbjNnUUxnRGJ1d3FUanpyRmdGdGFSTFJSNUJkSEVFU21oYTQ5VE0=
       Paypal-Request-Id:
-      - 742c1604-b109-49ec-b1d0-24ca8b27c761
+      - 2b5683ff-5634-49fc-b136-e50e18a3382b
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -26,22 +26,22 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 25 Jul 2016 00:47:05 GMT
+      - Sat, 30 Jul 2016 15:46:39 GMT
       Server:
       - Apache
       Proxy-Server-Info:
-      - host=slcsbplatformapiserv3002.slc.paypal.com;threadId=661
+      - host=slcsbplatformapiserv3001.slc.paypal.com;threadId=627
       Paypal-Debug-Id:
-      - dd543ed4b207f
-      - dd543ed4b207f
+      - 974905d592c51
+      - 974905d592c51
       Correlation-Id:
-      - dd543ed4b207f
+      - 974905d592c51
       X-Paypal-Token-Service:
       - IAAS
       Set-Cookie:
       - X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT
-      - X-PP-SILOVER=name%3DSANDBOX3.API.1%26silo_version%3D1880%26app%3Dplatformapiserv%26TIME%3D2304873815%26HTTP_X_PP_AZ_LOCATOR%3D;
-        Expires=Mon, 25 Jul 2016 01:17:05 GMT; domain=.paypal.com; path=/; Secure;
+      - X-PP-SILOVER=name%3DSANDBOX3.API.1%26silo_version%3D1880%26app%3Dplatformapiserv%26TIME%3D3754662999%26HTTP_X_PP_AZ_LOCATOR%3D;
+        Expires=Sat, 30 Jul 2016 16:16:39 GMT; domain=.paypal.com; path=/; Secure;
         HttpOnly
       Vary:
       - Authorization
@@ -54,9 +54,9 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"scope":"https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card
-        openid https://api.paypal.com/v1/developer/.* https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2016-07-25T00:04:16ZH9XMzWCKMv-Q34O3iZriyGSBGu3_O8m1fMHdb8w_ZFY","access_token":"A101.4BlnrV7uJjA8InBKCth8NqT9s0XQF0_GYR96jnUUoKFDB58JyGzqnGVBLtiyEYUA.OWtM8bpBF3wFLbAv7jUFRIjeYS4","token_type":"Bearer","app_id":"APP-2EJ531395M785864S","expires_in":29831}'
+        openid https://api.paypal.com/v1/developer/.* https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2016-07-30T15:46:39ZejODO2xcaPv-I-2hEaO1wbmQ0Z0iVsU0KAOP5iGTMA8","access_token":"A101.2tfYZjNIAU6GhAcxeVh_3iATxvuaWIcMC-6169kC4YTuOtUDjFDVYWNOPPBn3Lk5.C6lPjJBbIvrJB2M-0iRiufIS5cy","token_type":"Bearer","app_id":"APP-2EJ531395M785864S","expires_in":32400}'
     http_version: 
-  recorded_at: Mon, 25 Jul 2016 00:47:05 GMT
+  recorded_at: Sat, 30 Jul 2016 15:46:39 GMT
 - request:
     method: post
     uri: https://api.sandbox.paypal.com/v1/payments/payment
@@ -69,14 +69,14 @@ http_interactions:
       X-Paypal-Sandbox-Email-Address:
       - Platform.sdk.seller@gmail.com
       Authorization:
-      - Bearer A101.4BlnrV7uJjA8InBKCth8NqT9s0XQF0_GYR96jnUUoKFDB58JyGzqnGVBLtiyEYUA.OWtM8bpBF3wFLbAv7jUFRIjeYS4
+      - Bearer A101.2tfYZjNIAU6GhAcxeVh_3iATxvuaWIcMC-6169kC4YTuOtUDjFDVYWNOPPBn3Lk5.C6lPjJBbIvrJB2M-0iRiufIS5cy
       Content-Type:
       - application/json
       User-Agent:
       - PayPalSDK/PayPal-Ruby-SDK 1.4.8 (paypal-sdk-core 1.4.8; ruby 2.3.1p112-x86_64-darwin15;OpenSSL
         1.0.2h  3 May 2016)
       Paypal-Request-Id:
-      - 742c1604-b109-49ec-b1d0-24ca8b27c761
+      - 2b5683ff-5634-49fc-b136-e50e18a3382b
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -87,22 +87,22 @@ http_interactions:
       message: Created
     headers:
       Date:
-      - Mon, 25 Jul 2016 00:47:06 GMT
+      - Sat, 30 Jul 2016 15:46:40 GMT
       Server:
       - Apache
       Proxy-Server-Info:
-      - host=slcsbplatformapiserv3002.slc.paypal.com;threadId=3671
+      - host=slcsbplatformapiserv3002.slc.paypal.com;threadId=409
       Paypal-Debug-Id:
-      - 56a233811ef6c
-      - 56a233811ef6c
+      - 8604aa8d52f6d
+      - 8604aa8d52f6d
       Correlation-Id:
-      - 56a233811ef6c
+      - 8604aa8d52f6d
       Content-Language:
       - "*"
       Set-Cookie:
       - X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT
-      - X-PP-SILOVER=name%3DSANDBOX3.API.1%26silo_version%3D1880%26app%3Dplatformapiserv%26TIME%3D2321651031%26HTTP_X_PP_AZ_LOCATOR%3D;
-        Expires=Mon, 25 Jul 2016 01:17:06 GMT; domain=.paypal.com; path=/; Secure;
+      - X-PP-SILOVER=name%3DSANDBOX3.API.1%26silo_version%3D1880%26app%3Dplatformapiserv%26TIME%3D3771440215%26HTTP_X_PP_AZ_LOCATOR%3D;
+        Expires=Sat, 30 Jul 2016 16:16:40 GMT; domain=.paypal.com; path=/; Secure;
         HttpOnly
       Vary:
       - Authorization
@@ -114,9 +114,9 @@ http_interactions:
       - application/json
     body:
       encoding: UTF-8
-      string: '{"id":"PAY-93V0642115694331YK6KWDCQ","intent":"sale","state":"created","payer":{"payment_method":"paypal"},"transactions":[{"amount":{"total":"30.00","currency":"USD"},"item_list":{"items":[{"name":"MyString
+      string: '{"id":"PAY-658703504S130180LK6OMXYA","intent":"sale","state":"created","payer":{"payment_method":"paypal"},"transactions":[{"amount":{"total":"30.00","currency":"USD"},"item_list":{"items":[{"name":"MyString
         15 Jul 20:07","sku":"1","price":"15.00","currency":"USD","quantity":1},{"name":"MyString
-        15 Jul 20:07","sku":"1","price":"15.00","currency":"USD","quantity":1}]},"related_resources":[]}],"create_time":"2016-07-25T00:47:06Z","links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payment/PAY-93V0642115694331YK6KWDCQ","rel":"self","method":"GET"},{"href":"https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-7BG44898BC906102F","rel":"approval_url","method":"REDIRECT"},{"href":"https://api.sandbox.paypal.com/v1/payments/payment/PAY-93V0642115694331YK6KWDCQ/execute","rel":"execute","method":"POST"}]}'
+        15 Jul 20:07","sku":"1","price":"15.00","currency":"USD","quantity":1}]},"related_resources":[]}],"create_time":"2016-07-30T15:46:40Z","links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payment/PAY-658703504S130180LK6OMXYA","rel":"self","method":"GET"},{"href":"https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-8K5534440F7011027","rel":"approval_url","method":"REDIRECT"},{"href":"https://api.sandbox.paypal.com/v1/payments/payment/PAY-658703504S130180LK6OMXYA/execute","rel":"execute","method":"POST"}]}'
     http_version: 
-  recorded_at: Mon, 25 Jul 2016 00:47:06 GMT
+  recorded_at: Sat, 30 Jul 2016 15:46:40 GMT
 recorded_with: VCR 3.0.3
