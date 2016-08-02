@@ -35,7 +35,10 @@ class PaymentsController < ApplicationController
   private def stripe_workflow
     @reference = Payment.generate_reference
     PurchasesCartJob.perform_later(
-        user: current_user, params: params.to_h, payment_reference: @reference)
+        user: current_user,
+        purchase_amount_cents: params[:purchase_amount_cents],
+        expected_ticket_ids: params[:ticket_ids],
+        payment_reference: @reference)
   end
 
   private def card_params
