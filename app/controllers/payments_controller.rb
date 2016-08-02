@@ -15,7 +15,6 @@ class PaymentsController < ApplicationController
     end
   end
 
-  # START: choose_workflow
   private def run_workflow(payment_type, purchase_type)
     case purchase_type
     when "SubscriptionCart"
@@ -24,16 +23,25 @@ class PaymentsController < ApplicationController
       payment_type == "paypal" ? paypal_workflow : stripe_workflow
     end
   end
-  # END: choose_workflow
+
+  # START: pick_user
+  private def pick_user
+    if current_user.admin? && params[:user_email].present?
+      User.find_or_create_by(email: params[:user_email])
+    else
+      current_user
+    end
+  end
 
   private def stripe_subscription_workflow
     workflow = CreatesSubscriptionViaStripe.new(
-        user: current_user,
+        user: pick_user,
         expected_subscription_id: params[:subscription_ids].first,
         token: StripeToken.new(**card_params))
     workflow.run
     workflow
   end
+  # END: pick_user
 
   private def paypal_workflow
     workflow = PreparesCartForPayPal.new(

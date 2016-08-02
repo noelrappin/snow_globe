@@ -26,6 +26,17 @@ h3 Payment Options
 
   .bg-danger#error-text
 
+  -# START: admin_fields
+  - if current_user.admin?
+    #admin_credit_card_info
+      h3 Administrator info
+      .form-group
+        .col-sm-2
+          = label_tag(:user_email, "User Email", class: "control-label")
+        .col-sm-2
+          input.form-control(name="user_email" id="user_email")
+  -# END: admin_fields
+
   #credit-card-info
     h3 Credit Card Info
     .row

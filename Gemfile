@@ -17,7 +17,6 @@ gem "pg"
 gem "puma"
 gem "pundit"
 gem "rollbar"
-gem "sass-rails"
 gem "simple_form"
 gem "slim-rails"
 gem "sprockets", github: "rails/sprockets"
@@ -25,6 +24,15 @@ gem "stripe"
 gem "turbolinks"
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "uglifier"
+
+# START: active_admin
+gem "activeadmin", github: "activeadmin/activeadmin"
+gem "active_admin_theme"
+gem "inherited_resources", github: "activeadmin/inherited_resources"
+gem "ransack", github: "activerecord-hackery/ransack"
+gem "draper", "> 3.x"
+gem "sass-rails", github: "rails/sass-rails"
+# END: active_admin
 
 group :development do
   gem "foreman"
