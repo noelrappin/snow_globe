@@ -1,4 +1,5 @@
 class ApplicationPolicy
+
   attr_reader :user, :record
 
   def initialize(user, record)
@@ -11,7 +12,7 @@ class ApplicationPolicy
   end
 
   def show?
-    scope.where(:id => record.id).exists?
+    scope.where(id: record.id).exists?
   end
 
   def create?
@@ -39,6 +40,7 @@ class ApplicationPolicy
   end
 
   class Scope
+
     attr_reader :user, :scope
 
     def initialize(user, scope)
@@ -49,5 +51,7 @@ class ApplicationPolicy
     def resolve
       scope
     end
+
   end
+
 end

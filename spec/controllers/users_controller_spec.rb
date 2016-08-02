@@ -12,12 +12,12 @@ RSpec.describe UsersController, :aggregate_failures do
     end
 
     it "allows a user to view their own page" do
-      get :show, id: logged_in_user
+      get :show, params: {id: logged_in_user}
       expect(response).to be_a_success
     end
 
     it "blocks a user from viewing another user's page" do
-      get :show, id: other_user
+      get :show, params: {id: other_user}
       expect(response).to be_forbidden
       expect(controller.user_signed_in?).to be_falsy
     end
@@ -27,7 +27,7 @@ RSpec.describe UsersController, :aggregate_failures do
       before(:example) { logged_in_user.admin! }
 
       it "allows an admin to view another user's page" do
-        get :show, id: other_user
+        get :show, params: {id: other_user}
         expect(response).to be_a_success
       end
 

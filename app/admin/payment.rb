@@ -1,14 +1,41 @@
 ActiveAdmin.register Payment do
-  # See permitted parameters documentation:
-  # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # permit_params :list, :of, :attributes, :on, :model
-  #
-  # or
-  #
-  # permit_params do
-  #   permitted = [:permitted, :attributes]
-  #   permitted << :other if params[:action] == 'create' && current_user.admin?
-  #   permitted
-  # end
+  filter :refernce
+  filter :price
+  filter :status
+  filter :payment_method
+  filter :created_at
+
+  index do
+    selectable_column
+    id_column
+    column :reference
+    column :user
+    column :price
+    column :status
+    column :payment_method
+    column :created_at
+    actions
+  end
+
+  show do
+    attributes_table do
+      row :reference
+      row :price
+      row :status
+      row :payment_method
+      row :user
+      row :created_at
+      row :response_id
+      row :full_response
+    end
+    active_admin_comments
+  end
+
+  action_item :refund, only: :show do
+    link_to("Refund Payment",
+        refund_path(id: payment.id, type: Payment),
+        method: "POST",
+        class: "button",
+        data: {confirm: "Are you sure you want refund this payment?"})
+  end
 end

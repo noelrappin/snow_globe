@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160802185233) do
+ActiveRecord::Schema.define(version: 20160802212114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,25 +56,34 @@ ActiveRecord::Schema.define(version: 20160802185233) do
     t.integer  "payment_id"
     t.string   "buyable_type"
     t.integer  "buyable_id"
-    t.integer  "price_cents",    default: 0,     null: false
-    t.string   "price_currency", default: "USD", null: false
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.integer  "price_cents",           default: 0,     null: false
+    t.string   "price_currency",        default: "USD", null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.integer  "original_line_item_id"
+    t.integer  "administrator_id"
+    t.integer  "refund_status",         default: 0
+    t.index ["administrator_id"], name: "index_payment_line_items_on_administrator_id", using: :btree
     t.index ["buyable_type", "buyable_id"], name: "index_payment_line_items_on_buyable_type_and_buyable_id", using: :btree
+    t.index ["original_line_item_id"], name: "index_payment_line_items_on_original_line_item_id", using: :btree
     t.index ["payment_id"], name: "index_payment_line_items_on_payment_id", using: :btree
   end
 
   create_table "payments", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "price_cents",    default: 0,     null: false
-    t.string   "price_currency", default: "USD", null: false
+    t.integer  "price_cents",         default: 0,     null: false
+    t.string   "price_currency",      default: "USD", null: false
     t.integer  "status"
     t.string   "reference"
     t.string   "payment_method"
     t.string   "response_id"
     t.json     "full_response"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.integer  "original_payment_id"
+    t.integer  "administrator_id"
+    t.index ["administrator_id"], name: "index_payments_on_administrator_id", using: :btree
+    t.index ["original_payment_id"], name: "index_payments_on_original_payment_id", using: :btree
     t.index ["user_id"], name: "index_payments_on_user_id", using: :btree
   end
 
