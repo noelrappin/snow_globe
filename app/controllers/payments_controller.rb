@@ -36,7 +36,7 @@ class PaymentsController < ApplicationController
     @reference = Payment.generate_reference
     PurchasesCartJob.perform_later(
         user: current_user,
-        params: card_params
+        params: card_params,
         purchase_amount_cents: params[:purchase_amount_cents],
         expected_ticket_ids: params[:ticket_ids],
         payment_reference: @reference)
