@@ -3,7 +3,7 @@ class PurchasesCartJob < ApplicationJob
   queue_as :default
 
   def perform(user:, purchase_amount_cents:, expected_ticket_ids:,
-      payment_reference:)
+      payment_reference:, params: params)
     token = StripeToken.new(**card_params(params))
     user.tickets_in_cart.each do |ticket|
       ticket.update(payment_reference: payment_reference)
