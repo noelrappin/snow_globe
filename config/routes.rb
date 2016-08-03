@@ -2,6 +2,10 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   root to: "visitors#index"
 
+  # START: user_simulation_routes
+  resource :user_simulation, only: %i(create destroy)
+  # END: user_simulation_routes
+
   # START: devise_routes
   devise_for :users, controllers: {
       sessions: "users/sessions"}

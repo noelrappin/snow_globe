@@ -70,3 +70,10 @@ group :test do
   gem "vcr"
   gem "webmock"
 end
+
+# START: mail_gems
+group :development, :staging do
+  gem "mail_interceptor"
+  gem "email_prefixer"
+end
+# END: mail_gems

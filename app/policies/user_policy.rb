@@ -23,4 +23,10 @@ class UserPolicy
     same_user? || user.admin?
   end
 
+  # START: simulate_policy
+  def simulate?
+    user.admin? && !same_user?
+  end
+  # END: simulate_policy
+
 end

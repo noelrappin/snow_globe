@@ -28,6 +28,15 @@ ActiveAdmin.register User do
 
   permit_params :email, :password, :password_confirmation, :cellphone_number
 
+  # START: simulate
+  action_item :refund, only: :show do
+    link_to(
+      "Simulate User", user_simulation_path(id_to_simulate: resource.id),
+          method: :post, class: "action-edit",
+          data: { confirm: "Do you want to simulate this user?" })
+  end
+  # END: simulate
+
   controller do
     def update
       @user = User.find(params[:id])
