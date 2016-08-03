@@ -9,7 +9,7 @@
   .alert.alert-danger
     button.close(aria-hidden="true"
       data-dismiss=alert type="button")
-      &times;
+      | &times;
     div
       | You are simulating #{current_user.email}
       = link_to("End Simulation", user_simulation_path, method: :delete)
