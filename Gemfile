@@ -3,6 +3,7 @@ ruby "2.3.1"
 gem "rails", "~> 5.0.0"
 
 gem "awesome_print"
+gem "authy"
 gem "babel-transpiler"
 gem "bootstrap-sass"
 gem "coffee-rails"

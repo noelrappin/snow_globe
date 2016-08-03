@@ -21,7 +21,28 @@ ActiveAdmin.register User do
       f.input :email
       f.input :password
       f.input :password_confirmation
+      f.input :cellphone_number
     end
     f.actions
+  end
+
+  permit_params :email, :password, :password_confirmation, :cellphone_number
+
+  controller do
+    def update
+      @user = User.find(params[:id])
+      if params[:user][:password].blank?
+        @user.update_without_password(permitted_params[:user])
+      else
+        @user.update_attributes(permitted_params[:user])
+      end
+      if @user.admin? && params[:user][:cellphone_number].present?
+        authy = Authy::API.register_user(
+            email: @user.email,
+            cellphone: params[:user][:cellphone_number],
+            country_code: "1")
+        @user.update(authy_id: authy.id) if authy
+      end
+    end
   end
 end
