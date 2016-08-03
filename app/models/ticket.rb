@@ -1,5 +1,7 @@
 class Ticket < ApplicationRecord
 
+  has_paper_trail
+
   include HasReference
 
   belongs_to :user, optional: true

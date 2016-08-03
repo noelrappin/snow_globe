@@ -1,5 +1,7 @@
 class Payment < ActiveRecord::Base
 
+  has_paper_trail
+
   include HasReference
 
   belongs_to :user, optional: true

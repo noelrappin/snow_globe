@@ -1,5 +1,9 @@
 class User < ApplicationRecord
 
+  # START: has_paper_trail
+  has_paper_trail ignore: %i(sign_in_count current_sign_in_at last_sign_in_at)
+  # END: has_paper_trail
+
   devise :database_authenticatable, :registerable,
       :recoverable, :rememberable, :trackable, :validatable
 

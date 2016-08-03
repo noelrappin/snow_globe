@@ -266,6 +266,10 @@ GEM
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
     orm_adapter (0.5.0)
+    paper_trail (5.2.0)
+      activerecord (>= 3.0, < 6.0)
+      activesupport (>= 3.0, < 6.0)
+      request_store (~> 1.1)
     parser (2.3.1.2)
       ast (~> 2.2)
     paypal-sdk-rest (1.4.9)
@@ -461,6 +465,7 @@ DEPENDENCIES
   launchy
   listen
   money-rails
+  paper_trail
   paypal-sdk-rest
   pg
   poltergeist
