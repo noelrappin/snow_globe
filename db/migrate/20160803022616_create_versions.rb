@@ -1,12 +1,13 @@
 # This migration creates the `versions` table, the only schema PT requires.
 # All other migrations PT provides are optional.
 class CreateVersions < ActiveRecord::Migration
+
   # Class names of MySQL adapters.
   # - `MysqlAdapter` - Used by gems: `mysql`, `activerecord-jdbcmysql-adapter`.
   # - `Mysql2Adapter` - Used by `mysql2` gem.
   MYSQL_ADAPTERS = [
-    "ActiveRecord::ConnectionAdapters::MysqlAdapter",
-    "ActiveRecord::ConnectionAdapters::Mysql2Adapter"
+      "ActiveRecord::ConnectionAdapters::MysqlAdapter",
+      "ActiveRecord::ConnectionAdapters::Mysql2Adapter"
   ].freeze
 
   # The largest text column available in all supported RDBMS is
@@ -46,7 +47,7 @@ class CreateVersions < ActiveRecord::Migration
   # MySQL 5.6 utf8mb4 limit is 191 chars for keys used in indexes.
   # See https://github.com/airblade/paper_trail/issues/651
   def item_type_options
-    opt = { null: false }
+    opt = {null: false}
     opt[:limit] = 191 if mysql?
     opt
   end
@@ -72,9 +73,11 @@ class CreateVersions < ActiveRecord::Migration
   #
   def versions_table_options
     if mysql?
-      { options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci" }
+      {options:
+        "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci"}
     else
       {}
     end
   end
+
 end
