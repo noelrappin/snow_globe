@@ -14,6 +14,10 @@ class PreparesCartForPayPal < PreparesCart
     super.merge(payment_method: "paypal")
   end
 
+  def on_failure
+    unpurchase_tickets
+  end
+
   def calculate_success
     @success = payment.pending?
   end

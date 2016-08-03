@@ -12,6 +12,7 @@ class Payment < ActiveRecord::Base
   belongs_to :original_payment, class_name: "Payment"
 
   monetize :price_cents
+  monetize :discount_cents
 
   enum status: {created: 0, succeeded: 1, pending: 2, failed: 3,
                 refund_pending: 4, refunded: 5}

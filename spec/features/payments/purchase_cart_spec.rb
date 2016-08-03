@@ -31,4 +31,21 @@ describe "purchasing a cart", :js do
     #     "#purchased_ticket_#{tickets(:midsummer_bums_2).id}")
   end
 
+  context "can add a discount code" do
+
+    it "comes back to the form on a discount" do
+
+      tickets(:midsummer_bums_1).place_in_cart_for(users(:buyer))
+      tickets(:midsummer_bums_2).place_in_cart_for(users(:buyer))
+      login_as(users(:buyer), scope: :user)
+      visit shopping_cart_path
+      fill_in :discount_code, with: "CODE"
+      click_on "apply_code"
+      expect(page).to have_selector(".active_code", text: "CODE")
+      expect(page).to have_selector(".total", text: "$22.50")
+
+    end
+
+  end
+
 end

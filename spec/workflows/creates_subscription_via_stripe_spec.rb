@@ -4,12 +4,12 @@ RSpec.describe CreatesSubscriptionViaStripe, :aggregate_failures, :vcr do
 
   describe "happy path", :vcr do
 
-    let(:user) { create(User, id: 5) }
+    let(:user) { create(:user) }
     let(:subscription) { Subscription.create!(
         user: user, plan: plan, status: :waiting) }
     let(:plan) { create(:plan,
-        plan_name: "vip_monthly", remote_id: "vip_monthly") }
-    let(:workflow) { StripeCreatesSubscription.new(
+        name: "vip_monthly", remote_id: "vip_monthly") }
+    let(:workflow) { CreatesSubscriptionViaStripe.new(
         user: user, expected_subscription_id: [subscription.id], token: token) }
     let(:token) { StripeToken.new(
         credit_card_number: "4242424242424242", expiration_month: "12",

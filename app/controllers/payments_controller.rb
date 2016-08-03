@@ -5,7 +5,13 @@ class PaymentsController < ApplicationController
     @payment = Payment.find_by(reference: @reference)
   end
 
+  # START: with_discount
   def create
+    if params[:discount_code].present?
+      session[:new_discount_code] = params[:discount_code]
+      redirect_to shopping_cart_path
+      return
+    end
     workflow = run_workflow(params[:payment_type], params[:purchase_type])
     if workflow.success
       redirect_to workflow.redirect_on_success_url ||
@@ -14,6 +20,7 @@ class PaymentsController < ApplicationController
       redirect_to shopping_cart_path
     end
   end
+  # END: with_discount
 
   private def run_workflow(payment_type, purchase_type)
     case purchase_type
@@ -24,7 +31,6 @@ class PaymentsController < ApplicationController
     end
   end
 
-  # START: pick_user
   private def pick_user
     if current_user.admin? && params[:user_email].present?
       User.find_or_create_by(email: params[:user_email])
@@ -41,13 +47,14 @@ class PaymentsController < ApplicationController
     workflow.run
     workflow
   end
-  # END: pick_user
 
+  # START: controller_with_code
   private def paypal_workflow
     workflow = PreparesCartForPayPal.new(
         user: current_user,
         purchase_amount_cents: params[:purchase_amount_cents],
-        expected_ticket_ids: params[:ticket_ids])
+        expected_ticket_ids: params[:ticket_ids],
+        discount_code_string: session[:new_discount_code])
     workflow.run
     workflow
   end
@@ -59,8 +66,10 @@ class PaymentsController < ApplicationController
         params: card_params,
         purchase_amount_cents: params[:purchase_amount_cents],
         expected_ticket_ids: params[:ticket_ids],
-        payment_reference: @reference)
+        payment_reference: @reference,
+        discount_code_string: session[:new_discount_code])
   end
+  # END: controller_with_code
 
   private def card_params
     params.permit(

@@ -2,7 +2,7 @@ class ShoppingCartsController < ApplicationController
 
   ## START: code.shopping_cart_show
   def show
-    @cart = ShoppingCart.new(current_user)
+    @cart = ShoppingCart.new(current_user, session[:new_discount_code])
   end
   ## END: code.shopping_cart_show
 
