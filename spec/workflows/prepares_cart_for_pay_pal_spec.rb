@@ -51,11 +51,16 @@ describe PreparesCartForPayPal, :vcr, :aggregate_failures do
       let!(:discount_code) { create(
           :discount_code, percentage: 25, code: "CODE") }
       let!(:discount_code_string) { "CODE" }
+      let(:workflow) { PreparesCartForPayPal.new(
+          user: user, purchase_amount_cents: 2250,
+          expected_ticket_ids: "#{ticket_1.id} #{ticket_2.id}",
+          payment_reference: "reference",
+          discount_code_string: discount_code_string) }
 
       it "creates a transaction object" do
         workflow.run
         expect(workflow.payment).to have_attributes(
-            user_id: user.id, price_cents: 3000, discount_cents: 750,
+            user_id: user.id, price_cents: 2250, discount_cents: 750,
             reference: a_truthy_value, payment_method: "paypal")
         expect(workflow.payment.payment_line_items.size).to eq(2)
       end

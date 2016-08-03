@@ -29,10 +29,20 @@ class PreparesCart
   delegate :total_price, to: :price_calculator
   # END: with_codes
 
-  def pre_purchase_valid?
-    purchase_amount == tickets.map(&:price).sum &&
-        expected_ticket_ids == tickets.map(&:id).sort
+  # START: admin_valid
+  def amount_valid?
+    return true if user.admin?
+    purchase_amount == total_price
   end
+
+  def tickets_valid?
+    expected_ticket_ids == tickets.map(&:id).sort
+  end
+
+  def pre_purchase_valid?
+    amount_valid? && tickets_valid?
+  end
+  # END: admin_valid
 
   def tickets
     @tickets ||= @user.tickets_in_cart.select do |ticket|
