@@ -16,7 +16,7 @@ class CashPurchasesCart < PreparesCart
 
   def pre_purchase_valid?
     raise UnauthorizedPurchaseException.new(user: user) unless user.admin?
-    super
+    true
   end
 
   def on_failure
