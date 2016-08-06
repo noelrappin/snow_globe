@@ -51,4 +51,5 @@ ActiveAdmin.register Payment do
     column(:discount)
   end
   ## END: csv
+
 end
