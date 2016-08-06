@@ -50,7 +50,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/sprockets.git
-  revision: 1e729f3c2f3deb927027a08b538aea2c7355b248
+  revision: eb2a00712ff5549bb9122bc43551a0258c2de201
   specs:
     sprockets (4.0.0.beta2)
       concurrent-ruby (~> 1.0)
@@ -58,14 +58,14 @@ GIT
 
 GIT
   remote: git://github.com/sinatra/rack-protection.git
-  revision: 729059ba862f9e3775e13bb1f17813fd6840d314
+  revision: 7e723a74763bb83989d1249cdceb9cceb2ee6f01
   specs:
     rack-protection (2.0.0)
       rack
 
 GIT
   remote: git://github.com/sinatra/sinatra.git
-  revision: 3e2379d7175ea7f5896f7a6f9c010c56e587ff03
+  revision: 98990ef31f42ed00b8a7c0dae1170fe24e182612
   specs:
     sinatra (2.0.0.pre.alpha)
       mustermann (~> 0.4)
@@ -126,7 +126,7 @@ GEM
     ast (2.3.0)
     authy (2.7.0)
       httpclient (>= 2.5.3.3)
-    autoprefixer-rails (6.3.7)
+    autoprefixer-rails (6.4.0.1)
       execjs
     awesome_print (1.7.0)
     babel-source (5.8.35)
@@ -369,7 +369,7 @@ GEM
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-progressbar (1.8.1)
-    ruby_dep (1.3.1)
+    ruby_dep (1.4.0)
     rubyzip (1.2.0)
     safe_yaml (1.0.4)
     sass (3.4.22)
@@ -412,7 +412,7 @@ GEM
     thread_safe (0.3.5)
     tilt (2.0.5)
     tool (0.2.3)
-    turbolinks (5.0.0)
+    turbolinks (5.0.1)
       turbolinks-source (~> 5)
     turbolinks-source (5.0.0)
     tzinfo (1.2.2)

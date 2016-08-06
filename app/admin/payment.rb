@@ -38,4 +38,18 @@ ActiveAdmin.register Payment do
         class: "button",
         data: {confirm: "Are you sure you want refund this payment?"})
   end
+
+  ## START: csv
+  csv do
+    column(:reference)
+    column(:date) { |payment| payment.created_at.to_s(:sql) }
+    column(:user_email) { |payment| payment.user.email }
+    column(:price)
+    column(:status)
+    column(:payment_method)
+    column(:response_id)
+    column(:discount)
+  end
+  ## END: csv
+
 end
