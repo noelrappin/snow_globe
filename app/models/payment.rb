@@ -64,4 +64,8 @@ class Payment < ActiveRecord::Base
     price.negative?
   end
 
+  def date
+    created_at.to_date
+  end
+
 end
