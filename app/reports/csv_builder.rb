@@ -1,3 +1,9 @@
+# Based on the ActiveAdmin::CSV builder class defined at 
+# https://github.com/activeadmin/activeadmin
+# The ActiveAdmin code is Copyright (c) Greg Bell, VersaPay Corporation
+# The changes are to allow the code to work outside an ActiveAdmin
+# Controller and View
+
 class CsvBuilder
 
   attr_reader :columns, :options, :klass
