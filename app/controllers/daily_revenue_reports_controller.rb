@@ -4,11 +4,12 @@ class DailyRevenueReportsController < ApplicationController
     respond_to do |format|
       format.html {}
       format.csv do
-        headers['X-Accel-Buffering'] = 'no'
-        headers['Cache-Control'] = 'no-cache'
-        headers['Content-Type'] = 'text/csv; charset=utf-8'
-        headers['Content-Disposition'] = %{attachment; filename="#{csv_filename}"}
-        headers["Last-Modified"] = Time.now.ctime.to_s
+        headers["X-Accel-Buffering"] = "no"
+        headers["Cache-Control"] = "no-cache"
+        headers["Content-Type"] = "text/csv; charset=utf-8"
+        headers["Content-Disposition"] =
+            %(attachment; filename="#{csv_filename}")
+        headers["Last-Modified"] = Time.zone.now.ctime.to_s
         self.response_body = DailyRevenue.to_csv_enumerator
       end
     end
