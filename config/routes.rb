@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   resources :subscriptions
   resources :refund
 
+  resource :daily_revenue_report
+
   get "paypal/approved", to: "pay_pal_payments#approved"
 
   # START: stripe
