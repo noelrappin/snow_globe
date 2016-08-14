@@ -15,7 +15,7 @@ class DailyRevenueReportsController < ApplicationController
     end
   end
 
-  def csv_filename
+  private def csv_filename
     "daily_revenue_report-#{Time.zone.now.to_date.to_s(:default)}.csv"
   end
 
