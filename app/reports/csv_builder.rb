@@ -107,7 +107,7 @@ class CsvBuilder
     def value(resource)
       case data
       when Symbol, String then resource.send(data)
-      when Proc then resource.instance_exec(&data)
+      when Proc then resource.instance_exec(resource, &data)
       end
     end
 

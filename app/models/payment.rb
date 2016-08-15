@@ -68,4 +68,8 @@ class Payment < ActiveRecord::Base
     created_at.to_date
   end
 
+  def full_value
+    price + discount
+  end
+
 end
