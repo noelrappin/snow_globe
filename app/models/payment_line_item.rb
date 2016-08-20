@@ -9,13 +9,17 @@ class PaymentLineItem < ApplicationRecord
                      foreign_key: "original_line_item_id"
   belongs_to :original_line_item, class_name: "PaymentLineItem"
 
-  enum refund_status: {no_refund: 1, refund_pending: 2, refunded: 3}
+  enum refund_status: {no_refund: 0, refund_pending: 2, refunded: 3}
 
   delegate :performance, to: :buyable, allow_nil: true
   delegate :name, :event, to: :performance, allow_nil: true
   delegate :id, to: :event, prefix: true, allow_nil: true
 
   monetize :price_cents
+
+  def self.tickets
+    where(buyable_type: "Ticket")
+  end
 
   def generate_refund_payment(admin:, amount_cents:, refund_payment: nil)
     refund_payment ||= Payment.create!(
