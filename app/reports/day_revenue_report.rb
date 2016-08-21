@@ -2,12 +2,10 @@ class DayRevenueReport < SimpleDelegator
 
   include CsvReportable
 
-  attr_accessor :date, :revenue, :discounts
-
   def self.find_collection
     result = DayRevenue.all.map { |dr| DayRevenueReport.new(dr) }
     result << DayRevenueReport.new(DayRevenue.build_for(Date.yesterday))
-    result << DayRevenueReport.new((DayRevenue.build_for(Date.current))
+    result << DayRevenueReport.new(DayRevenue.build_for(Date.current))
     result.sort_by(&:day)
   end
 

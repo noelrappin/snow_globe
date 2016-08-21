@@ -20,8 +20,8 @@ RSpec.describe DayRevenueReport, type: :model do
   it "generates the expected report" do
     enum = DayRevenueReport.to_csv_enumerator
     expect(enum.next).to eq("Day,Price,Discounts,Ticket count\n")
-    expect(enum.next).to eq("#{1.month.ago.to_date},60.00,,0\n")
-    expect(enum.next).to eq("#{2.days.ago.to_date},35.00,,0\n")
+    expect(enum.next).to eq("#{1.month.ago.to_date},60.00,0.00,0\n")
+    expect(enum.next).to eq("#{2.days.ago.to_date},35.00,0.00,0\n")
     expect(enum.next).to eq("#{1.day.ago.to_date},25.00,0.00,0\n")
     expect(enum.next).to eq("#{Date.current},15.00,0.00,0\n")
   end
