@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :payment_line_item do
     payment nil
-    buyable ""
-    price ""
+    buyable nil
+    price 1500
   end
 end
