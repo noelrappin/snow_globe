@@ -8,10 +8,6 @@ RSpec.describe DayRevenue, type: :model do
       :payment, created_at: 1.month.ago, price_cents: 1500) }
   let!(:old_payment) { create(
       :payment, created_at: 2.days.ago, price_cents: 3500) }
-  let!(:yesterday_payment) { create(
-      :payment, created_at: 1.day.ago, price_cents: 2500) }
-  let!(:now_payment) { create(
-      :payment, created_at: 1.second.ago, price_cents: 1500) }
   let!(:ticket) { create(:ticket) }
   let!(:payment_line_item) { create(
       :payment_line_item, payment: really_old_payment, buyable: ticket,
