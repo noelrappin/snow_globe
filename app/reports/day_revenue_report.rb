@@ -1,6 +1,6 @@
 class DayRevenueReport < SimpleDelegator
 
-  include CsvReportable
+  include Reportable
 
   def self.find_collection
     result = DayRevenue.all.map { |dr| DayRevenueReport.new(dr) }
@@ -13,7 +13,7 @@ class DayRevenueReport < SimpleDelegator
     super(day_revenue)
   end
 
-  csv do
+  columns do
     column(:day)
     column(:price)
     column(:discounts)
