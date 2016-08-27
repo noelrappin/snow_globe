@@ -1,6 +1,6 @@
 class DailyRevenue
 
-  include CsvReportable
+  include Reportable
 
   attr_accessor :date, :payments
 
@@ -28,7 +28,7 @@ class DailyRevenue
     payments.flat_map(&:tickets).size
   end
 
-  csv do
+  columns do
     column(:date)
     column(:tickets_sold)
     column(:revenue)

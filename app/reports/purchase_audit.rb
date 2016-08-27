@@ -1,6 +1,6 @@
 class PurchaseAudit
 
-  include CsvReportable
+  include Reportable
 
   attr_accessor :payment, :user
 
@@ -15,12 +15,12 @@ class PurchaseAudit
     @user = payment.user
   end
 
-  csv do
-    column(:reference) { |report| p report; report.payment.reference }
+  columns do
+    column(:reference) { |report| report.payment.reference }
     column(:user_email) { |report| report.user.email }
     column(:user_stripe_id) { |report| report.user.stripe_id }
-    column(:price) { |report| report.payment.price }
-    column(:total_value) { |report| report.payment.full_value }
+    column(:price) { |report| report.payment.price.to_f }
+    column(:total_value) { |report| report.payment.full_value.to_f }
   end
 
 end
