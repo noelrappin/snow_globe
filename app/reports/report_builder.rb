@@ -42,9 +42,9 @@ class ReportBuilder
     columns
   end
 
-# END: report_builder
+  # END: report_builder
 
-# START: builder
+  # START: builder
   class Builder
 
     attr_accessor :collection, :output, :columns, :options
@@ -144,6 +144,6 @@ class ReportBuilder
     end
 
   end
-  # END column 
+  # END column
 
 end

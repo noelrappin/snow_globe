@@ -13,20 +13,19 @@ module Reportable
     end
 
     def to_csv(collection: nil)
-      report_builder.build(collection || self.find_collection,
-        output: "", format: :csv)
+      report_builder.build(collection || find_collection,
+          output: "", format: :csv)
     end
 
     def to_json(collection: nil)
-      result = report_builder.build(collection || self.find_collection)
-      p result
+      result = report_builder.build(collection || find_collection)
       result.to_json
     end
 
     def to_csv_enumerator(collection: nil)
       Enumerator.new do |y|
-        report_builder.build(collection || self.find_collection,
-          output: y, format: :csv)
+        report_builder.build(collection || find_collection,
+            output: y, format: :csv)
       end
     end
 
