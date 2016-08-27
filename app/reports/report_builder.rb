@@ -1,3 +1,5 @@
+# START: report_builder
+
 # Inspired by the the ActiveAdmin::CSV builder class defined at
 # https://github.com/activeadmin/activeadmin
 # The ActiveAdmin code is Copyright (c) Greg Bell, VersaPay Corporation
@@ -40,6 +42,9 @@ class ReportBuilder
     columns
   end
 
+# END: report_builder
+
+# START: builder
   class Builder
 
     attr_accessor :collection, :output, :columns, :options
@@ -84,6 +89,8 @@ class ReportBuilder
     end
 
   end
+  # END: builder
+  # START: csv_builder
 
   class CsvBuilder < Builder
 
@@ -107,6 +114,8 @@ class ReportBuilder
     end
 
   end
+  # END csv_builder
+  # START column
 
   class Column
 
@@ -135,5 +144,6 @@ class ReportBuilder
     end
 
   end
+  # END column 
 
 end
