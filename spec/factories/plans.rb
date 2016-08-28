@@ -4,6 +4,7 @@ FactoryGirl.define do
     name "MyString"
     price_cents 10_000
     interval 2
+    interval_count 1
     tickets_allowed 1
     ticket_category "MyString"
     status 1
