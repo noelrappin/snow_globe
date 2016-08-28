@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(version: 20160802212114) do
     t.integer  "price_cents",     default: 0,     null: false
     t.string   "price_currency",  default: "USD", null: false
     t.integer  "interval"
+    t.integer  "interval_count"
     t.integer  "tickets_allowed"
     t.string   "ticket_category"
     t.integer  "status"

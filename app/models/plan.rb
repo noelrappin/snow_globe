@@ -11,7 +11,7 @@ class Plan < ApplicationRecord
 
   def end_date_from(date = nil)
     date ||= Date.current.to_date
-    1.send(interval).from_now(date)
+    interval_count.send(interval).from_now(date)
   end
 
 end
