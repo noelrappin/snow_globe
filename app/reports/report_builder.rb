@@ -114,8 +114,8 @@ class ReportBuilder
     end
 
   end
-  # END csv_builder
-  # START column
+  # END: csv_builder
+  # START: column
 
   class Column
 
@@ -144,6 +144,6 @@ class ReportBuilder
     end
 
   end
-  # END column
+  # END: column
 
 end
