@@ -66,7 +66,6 @@ group :test do
   gem "poltergeist"
   gem "selenium-webdriver"
   gem "sinatra", github: "sinatra/sinatra"
-  gem "rack-protection", github: "sinatra/rack-protection"
   gem "vcr"
   gem "webmock"
 end
