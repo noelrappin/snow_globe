@@ -21,7 +21,7 @@ describe PreparesCartForPayPal, :vcr, :aggregate_failures do
     let(:discount_code) { nil }
     let(:discount_code_string) { nil }
     let(:workflow) { PreparesCartForPayPal.new(
-        user: user, purchase_amount_cents: 3000,
+        user: user, purchase_amount_cents: 3100,
         expected_ticket_ids: "#{ticket_1.id} #{ticket_2.id}",
         payment_reference: "reference",
         discount_code_string: discount_code_string) }
@@ -38,8 +38,11 @@ describe PreparesCartForPayPal, :vcr, :aggregate_failures do
       expect(ticket_3).not_to be_pending
       expect(workflow.success).to be_truthy
       expect(workflow.payment).to have_attributes(
-          user_id: user.id, price_cents: 3000,
-          reference: a_truthy_value, payment_method: "paypal")
+          user_id: user.id, price_cents: 3100,
+          partials: {
+              "ticket_cents" => [1500, 1500], "processing_fee_cents" => 100},
+          reference: a_truthy_value,
+          payment_method: "paypal")
       expect(workflow.payment.payment_line_items.size).to eq(2)
       expect(workflow.redirect_on_success_url).to start_with(
           "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout")
@@ -52,7 +55,7 @@ describe PreparesCartForPayPal, :vcr, :aggregate_failures do
           :discount_code, percentage: 25, code: "CODE") }
       let!(:discount_code_string) { "CODE" }
       let(:workflow) { PreparesCartForPayPal.new(
-          user: user, purchase_amount_cents: 2250,
+          user: user, purchase_amount_cents: 2350,
           expected_ticket_ids: "#{ticket_1.id} #{ticket_2.id}",
           payment_reference: "reference",
           discount_code_string: discount_code_string) }
@@ -60,7 +63,11 @@ describe PreparesCartForPayPal, :vcr, :aggregate_failures do
       it "creates a transaction object" do
         workflow.run
         expect(workflow.payment).to have_attributes(
-            user_id: user.id, price_cents: 2250, discount_cents: 750,
+            user_id: user.id, price_cents: 2350,
+            partials: {
+                "ticket_cents" => [1500, 1500],
+                "processing_fee_cents" => 100,
+                "discount_cents" => -750},
             reference: a_truthy_value, payment_method: "paypal")
         expect(workflow.payment.payment_line_items.size).to eq(2)
       end

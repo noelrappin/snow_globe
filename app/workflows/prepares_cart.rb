@@ -88,7 +88,7 @@ class PreparesCart
     {user_id: user.id, price_cents: purchase_amount.cents,
      status: "created", reference: Payment.generate_reference,
      discount_code_id: discount_code&.id,
-     discount: price_calculator.discount}
+     partials: price_calculator.breakdown}
   end
   # END: code_payment_attributes
 

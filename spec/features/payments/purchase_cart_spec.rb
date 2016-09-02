@@ -42,7 +42,7 @@ describe "purchasing a cart", :js do
       fill_in :discount_code, with: "CODE"
       click_on "apply_code"
       expect(page).to have_selector(".active_code", text: "CODE")
-      expect(page).to have_selector(".total", text: "$22.50")
+      expect(page).to have_selector(".total", text: "$23.50")
 
     end
 

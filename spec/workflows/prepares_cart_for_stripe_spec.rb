@@ -20,14 +20,15 @@ describe PreparesCartForStripe, :vcr, :aggregate_failures do
   let(:discount_code) { nil }
   let(:discount_code_string) { nil }
   let(:workflow) { PreparesCartForStripe.new(
-      user: user, purchase_amount_cents: 3000,
+      user: user, purchase_amount_cents: 3100,
       expected_ticket_ids: "#{ticket_1.id} #{ticket_2.id}",
       payment_reference: "reference", stripe_token: token,
       discount_code_string: discount_code_string) }
   let(:attributes) {
-    {user_id: user.id, price_cents: 3000,
+    {user_id: user.id, price_cents: 3100,
      reference: a_truthy_value, status: "created",
-     discount_code_id: nil, discount: Money.zero,
+     discount_code_id: nil,
+     partials: {ticket_cents: [1500, 1500], processing_fee_cents: 100},
      payment_method: "stripe"} }
 
   before(:example) do
@@ -52,7 +53,7 @@ describe PreparesCartForStripe, :vcr, :aggregate_failures do
 
     context "with a discount code" do
       let(:workflow) { PreparesCartForStripe.new(
-          user: user, purchase_amount_cents: 2250,
+          user: user, purchase_amount_cents: 2350,
           expected_ticket_ids: "#{ticket_1.id} #{ticket_2.id}",
           payment_reference: "reference", stripe_token: token,
           discount_code_string: discount_code_string) }
@@ -63,7 +64,11 @@ describe PreparesCartForStripe, :vcr, :aggregate_failures do
       it "creates a transaction object" do
         workflow.run
         expect(workflow.payment).to have_attributes(
-            user_id: user.id, price_cents: 2250, discount_cents: 750,
+            user_id: user.id, price_cents: 2350,
+            partials: {
+                "ticket_cents" => [1500, 1500],
+                "processing_fee_cents" => 100,
+                "discount_cents" => -750},
             reference: a_truthy_value, payment_method: "stripe")
         expect(workflow.payment.payment_line_items.size).to eq(2)
       end

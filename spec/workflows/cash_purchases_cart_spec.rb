@@ -26,10 +26,12 @@ describe CashPurchasesCart, :aggregate_failures do
         expected_ticket_ids: "1 2",
         payment_reference: "reference",
         discount_code_string: discount_code_string) }
-    let(:attributes) { {user_id: user.id, price_cents: 3000,
-                        reference: a_truthy_value, payment_method: "cash",
-                        status: "succeeded", administrator_id: user.id,
-                        discount_code_id: nil, discount: Money.zero} }
+    let(:attributes) { {
+        user_id: user.id, price_cents: 3000,
+        reference: a_truthy_value, payment_method: "cash",
+        status: "succeeded", administrator_id: user.id,
+        discount_code_id: nil,
+        partials: {ticket_cents: [1500, 1500], processing_fee_cents: 100}} }
 
     context "with an administrative user" do
       before(:example) do

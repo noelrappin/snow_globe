@@ -35,8 +35,12 @@ describe ShoppingCart do
     expect(cart.performances_for(romeo)).to eq([romeo_performance])
   end
 
+  it "calculates fee" do
+    expect(cart.processing_fee).to eq(Money.new(100))
+  end
+
   it "calculates entire total" do
-    expect(cart.total_cost).to eq(Money.new(4500))
+    expect(cart.total_cost).to eq(Money.new(4600))
   end
 
 end

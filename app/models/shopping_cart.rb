@@ -12,9 +12,15 @@ class ShoppingCart
     @discount_code ||= DiscountCode.find_by(code: discount_code_string)
   end
 
-  def total_cost
-    PriceCalculator.new(tickets, discount_code).total_price
+  def price_calculator
+    @price_calculator ||= PriceCalculator.new(tickets, discount_code)
   end
+
+  def total_cost
+    price_calculator.total_price
+  end
+
+  delegate :processing_fee, to: :price_calculator
 
   def tickets
     @tickets ||= user.tickets_in_cart
