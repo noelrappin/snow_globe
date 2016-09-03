@@ -2,11 +2,11 @@ require "rails_helper"
 
 describe AddsDiscountCodeToCart do
 
-  let!(:code) { create(:discount_code, code: "CODE") }
+  let!(:code) { create(:discount_code, code: "TEST") }
   let(:user) { create(:user) }
 
   describe "adds a code to a new cart" do
-    let(:workflow) { AddsDiscountCodeToCart.new(user: user, code: "CODE") }
+    let(:workflow) { AddsDiscountCodeToCart.new(user: user, code: "TEST") }
 
     it "adds a code" do
       workflow.run
@@ -38,7 +38,7 @@ describe AddsDiscountCodeToCart do
     end
 
     context "with a real code" do
-      let(:workflow) { AddsDiscountCodeToCart.new(user: user, code: "CODE") }
+      let(:workflow) { AddsDiscountCodeToCart.new(user: user, code: "TEST") }
 
       it "overrides an existing code" do
         workflow.run
