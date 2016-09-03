@@ -1,8 +1,7 @@
 h3 Payment Options
 
-= form_tag(payments_path,
-  class: "credit-card-form form-horizontal", id: "payment-form") do
 
+= form_tag(discount_codes_path, id: "discount-code-form") do
   .form-group
     .col-sm-2
       = label_tag(:discount_code, "Discount Code", class: "control-label")
@@ -10,21 +9,24 @@ h3 Payment Options
       input.form-control.valid-field(name="discount_code" id="discount_code")
     .col-sm-3
       = submit_tag("Apply Code", class: "btn btn-primary", id: "apply_code")
-    = hidden_field_tag(:active_discount_code, "")
 
-    / # START: admin_override
-    - if current_user.admin?
-      .form-group
-        .col-sm-2
-          = label_tag(:purchase_amount,
-            "Purchase Amount Override ($X.XX)", class: "control-label")
-        .col-sm-2
-          input.form-control(name=:purchase_amount_cents
-            id="purchase_amount"
-            value=humanized_money(@cart.total_cost))
-    - else
-      = hidden_field_tag(:purchase_amount_cents, @cart.total_cost.cents)
-    /# END: admin_override
+= form_tag(payments_path,
+      class: "credit-card-form form-horizontal", id: "payment-form") do
+  = hidden_field_tag(:active_discount_code, "")
+
+  / # START: admin_override
+  - if current_user.admin?
+    .form-group
+      .col-sm-2
+        = label_tag(:purchase_amount,
+          "Purchase Amount Override ($X.XX)", class: "control-label")
+      .col-sm-2
+        input.form-control(name=:purchase_amount_cents
+          id="purchase_amount"
+          value=humanized_money(@cart.total_cost))
+  - else
+    = hidden_field_tag(:purchase_amount_cents, @cart.total_cost.cents)
+  /# END: admin_override
 
   = hidden_field_tag(:purchase_amount_cents, @cart.total_cost.cents)
   = hidden_field_tag(@cart.item_attribute, @cart.item_ids)
@@ -95,6 +97,73 @@ h3 Payment Options
           = label_tag(:cvc, "CVC", class: "control-label")
         .col-sm-1
           input.form-control.valid-field(data-stripe="cvc" id="cvc")
+
+  h3 Billing Address
+  .row
+    .form-group
+      .col-sm-2
+        = label_tag(:billing_address_1, "Address Line 1",
+          class: "control-label")
+      .col-sm-3
+        = text_field_tag("billing_address[address_1]", "",
+            class: "form-control")
+  .row
+    .form-group
+      .col-sm-2
+        = label_tag(:billing_address_2, "Address Line 2",
+          class: "control-label")
+      .col-sm-3
+        = text_field_tag("billing_address[address_2]", "",
+            class: "form-control")
+
+  .row
+    .form-group
+      .col-sm-2
+        = label_tag(:billing_address_city, "City/State/Zip",
+          class: "control-label")
+      .col-sm-3
+        = text_field_tag("billing_address[city]", "",
+            class: "form-control")
+      .col-sm-2
+        = select_tag("billing_address[state]",
+          options_for_select(CS.states(:us).invert), class: "form-control")
+      .col-sm-2
+        = text_field_tag("billing_address[zip]", "",
+            class: "form-control", placeholder: "Zip")
+
+  h3 Shipping Address
+  .row
+    .form-group
+      .col-sm-2
+        = label_tag(:shipping_address_1, "Address Line 1",
+          class: "control-label")
+      .col-sm-3
+        = text_field_tag("shipping_address[address_1]", "",
+            class: "form-control")
+  .row
+    .form-group
+      .col-sm-2
+        = label_tag(:shipping_address_2, "Address Line 2",
+          class: "control-label")
+      .col-sm-3
+        = text_field_tag("shipping_address[address_2]", "",
+            class: "form-control")
+
+  .row
+    .form-group
+      .col-sm-2
+        = label_tag(:shipping_address_city, "City/State/Zip",
+          class: "control-label")
+      .col-sm-3
+        = text_field_tag("shipping_address[city]", "",
+            class: "form-control")
+      .col-sm-2
+        = select_tag("shipping_address[state]",
+          options_for_select(CS.states(:us).invert), class: "form-control")
+      .col-sm-2
+        = text_field_tag("shipping_address[zip]", "",
+            class: "form-control", placeholder: "Zip")
+
 
   .row
     .form-group

@@ -1,15 +1,11 @@
-class ShoppingCart
+class ShoppingCart < ApplicationRecord
 
-  # START: create_price_calculator
-  attr_accessor :user, :discount_code_string
+  belongs_to :user
+  belongs_to :address
+  belongs_to :discount_code
 
-  def initialize(user, discount_code_string = nil)
-    @user = user
-    @discount_code_string = discount_code_string
-  end
-
-  def discount_code
-    @discount_code ||= DiscountCode.find_by(code: discount_code_string)
+  def self.for(user:)
+    ShoppingCart.find_or_create_by(user_id: user.id)
   end
 
   def price_calculator
@@ -25,7 +21,6 @@ class ShoppingCart
   def tickets
     @tickets ||= user.tickets_in_cart
   end
-  # END: create_price_calculator
 
   def events
     tickets.map(&:event).uniq.sort_by(&:name)

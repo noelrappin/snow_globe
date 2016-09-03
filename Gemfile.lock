@@ -120,6 +120,9 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     addressable (2.4.0)
+    akami (1.3.1)
+      gyoku (>= 0.4.0)
+      nokogiri
     arbre (1.1.1)
       activesupport (>= 3.0.0)
     arel (7.1.1)
@@ -154,6 +157,8 @@ GEM
       launchy
     childprocess (0.5.9)
       ffi (~> 1.0, >= 1.0.11)
+    city-state (0.0.13)
+      rubyzip (~> 1.1)
     cliver (0.3.2)
     coderay (1.1.1)
     coffee-rails (4.2.1)
@@ -215,6 +220,8 @@ GEM
     formtastic_i18n (0.6.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    gyoku (1.3.1)
+      builder (>= 2.1.2)
     has_scope (0.7.0)
       actionpack (>= 4.1, < 5.1)
       activesupport (>= 4.1, < 5.1)
@@ -222,6 +229,9 @@ GEM
     http-cookie (1.0.2)
       domain_name (~> 0.5)
     httpclient (2.8.0)
+    httpi (2.4.2)
+      rack
+      socksify
     i18n (0.7.0)
     interception (0.5)
     jbuilder (2.6.0)
@@ -272,6 +282,7 @@ GEM
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
+    nori (2.6.0)
     orm_adapter (0.5.0)
     paper_trail (5.2.0)
       activerecord (>= 3.0, < 6.0)
@@ -373,6 +384,14 @@ GEM
     rubyzip (1.2.0)
     safe_yaml (1.0.4)
     sass (3.4.22)
+    savon (2.11.1)
+      akami (~> 1.2)
+      builder (>= 2.1.2)
+      gyoku (~> 1.2)
+      httpi (~> 2.3)
+      nokogiri (>= 1.4.0)
+      nori (~> 2.4)
+      wasabi (~> 3.4)
     selenium-webdriver (2.53.4)
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
@@ -394,6 +413,7 @@ GEM
       slim (~> 3.0)
       sysexits (~> 1.1)
     slop (3.6.0)
+    socksify (1.7.0)
     spring (1.7.2)
     spring-commands-rspec (1.0.4)
       spring (>= 0.9.1)
@@ -407,6 +427,10 @@ GEM
     stripe (1.49.0)
       rest-client (>= 1.4, < 3.0)
     sysexits (1.2.0)
+    tax_cloud (0.3.0)
+      activesupport (>= 3.0)
+      i18n
+      savon (>= 2.0)
     temple (0.7.7)
     thor (0.19.1)
     thread_safe (0.3.5)
@@ -427,6 +451,9 @@ GEM
     vcr (3.0.3)
     warden (1.2.6)
       rack (>= 1.0)
+    wasabi (3.5.0)
+      httpi (~> 2.0)
+      nokogiri (>= 1.4.2)
     web-console (3.3.1)
       actionview (>= 5.0)
       activemodel (>= 5.0)
@@ -457,6 +484,7 @@ DEPENDENCIES
   byebug
   capybara
   capybara-screenshot
+  city-state
   coffee-rails
   database_cleaner
   delayed_job_active_record
@@ -501,6 +529,7 @@ DEPENDENCIES
   spring-watcher-listen
   sprockets!
   stripe
+  tax_cloud
   turbolinks
   tzinfo-data
   uglifier

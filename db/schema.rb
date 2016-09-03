@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160901212715) do
+ActiveRecord::Schema.define(version: 20160902113711) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,16 @@ ActiveRecord::Schema.define(version: 20160901212715) do
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
     t.index ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
+  end
+
+  create_table "addresses", force: :cascade do |t|
+    t.string   "address_1"
+    t.string   "address_2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "day_revenues", force: :cascade do |t|
@@ -110,6 +120,8 @@ ActiveRecord::Schema.define(version: 20160901212715) do
     t.integer  "discount_cents",      default: 0,     null: false
     t.string   "discount_currency",   default: "USD", null: false
     t.json     "partials"
+    t.integer  "billing_address_id"
+    t.integer  "shipping_address_id"
     t.index ["administrator_id"], name: "index_payments_on_administrator_id", using: :btree
     t.index ["discount_code_id"], name: "index_payments_on_discount_code_id", using: :btree
     t.index ["original_payment_id"], name: "index_payments_on_original_payment_id", using: :btree
@@ -138,6 +150,18 @@ ActiveRecord::Schema.define(version: 20160901212715) do
     t.text     "description"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+  end
+
+  create_table "shopping_carts", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "address_id"
+    t.integer  "shipping_method"
+    t.integer  "discount_code_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["address_id"], name: "index_shopping_carts_on_address_id", using: :btree
+    t.index ["discount_code_id"], name: "index_shopping_carts_on_discount_code_id", using: :btree
+    t.index ["user_id"], name: "index_shopping_carts_on_user_id", using: :btree
   end
 
   create_table "subscriptions", force: :cascade do |t|
@@ -205,6 +229,9 @@ ActiveRecord::Schema.define(version: 20160901212715) do
   add_foreign_key "payment_line_items", "payments"
   add_foreign_key "payments", "users"
   add_foreign_key "performances", "events"
+  add_foreign_key "shopping_carts", "addresses"
+  add_foreign_key "shopping_carts", "discount_codes"
+  add_foreign_key "shopping_carts", "users"
   add_foreign_key "subscriptions", "plans"
   add_foreign_key "subscriptions", "users"
   add_foreign_key "tickets", "performances"

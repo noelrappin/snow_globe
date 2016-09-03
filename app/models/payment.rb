@@ -12,6 +12,8 @@ class Payment < ActiveRecord::Base
   has_many :refunds, class_name: "Payment",
                      foreign_key: "original_payment_id"
   belongs_to :original_payment, class_name: "Payment"
+  belongs_to :billing_address, class_name: "Address"
+  belongs_to :shipping_address, class_name: "Address"
 
   monetize :price_cents
   monetize :discount_cents

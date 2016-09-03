@@ -15,7 +15,7 @@ describe "purchasing a cart", :js do
     Stripe.api_key = Rails.application.secrets.stripe_secret_key
   end
 
-  it "can add a purchase to a cart" do
+  it "can add a purchase to a cart", :slow do
     tickets(:midsummer_bums_1).place_in_cart_for(users(:buyer))
     tickets(:midsummer_bums_2).place_in_cart_for(users(:buyer))
     login_as(users(:buyer), scope: :user)
@@ -33,7 +33,7 @@ describe "purchasing a cart", :js do
 
   context "can add a discount code" do
 
-    it "comes back to the form on a discount" do
+    it "comes back to the form on a discount", :slow do
 
       tickets(:midsummer_bums_1).place_in_cart_for(users(:buyer))
       tickets(:midsummer_bums_2).place_in_cart_for(users(:buyer))
