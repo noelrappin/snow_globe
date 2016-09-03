@@ -8,7 +8,8 @@ describe AddsToCart do
   let(:ticket_2) { instance_spy(Ticket, status: "unsold") }
 
   describe "happy path adding tickets" do
-    let(:action) { AddsToCart.new(user: user, performance: performance, count: 1) }
+    let(:action) { AddsToCart.new(
+        user: user, performance: performance, count: 1) }
 
     before(:example) do
       expect(performance).to receive(:unsold_tickets)

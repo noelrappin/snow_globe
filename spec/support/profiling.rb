@@ -1,4 +1,4 @@
-class UnclaimedSlowTestException < Exception
+class UnclaimedSlowTestException < RuntimeError
 
   THRESHOLD = 1
 
@@ -7,7 +7,8 @@ class UnclaimedSlowTestException < Exception
   end
 
   def message
-    "This spec at #{@example.metadata[:location]} is slower than #{THRESHOLD} seconds.
+    "This spec at #{@example.metadata[:location]} is slower
+     than #{THRESHOLD} seconds.
      Either make it faster or mark it as :slow in metadata"
   end
 

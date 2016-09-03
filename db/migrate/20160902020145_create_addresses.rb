@@ -1,4 +1,5 @@
 class CreateAddresses < ActiveRecord::Migration[5.0]
+
   def change
     create_table :addresses do |t|
       t.string :address_1
@@ -15,4 +16,5 @@ class CreateAddresses < ActiveRecord::Migration[5.0]
       t.integer :shipping_address_id
     end
   end
+
 end

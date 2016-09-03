@@ -33,7 +33,6 @@ describe AddsDiscountCodeToCart do
   describe "with an existing cart and code" do
     let!(:existing_code) { create(:discount_code, code: "EXISTING") }
 
-
     before(:example) do
       ShoppingCart.for(user: user).update(discount_code: existing_code)
     end
