@@ -20,11 +20,14 @@ describe PreparesCartForPayPal, :vcr, :aggregate_failures do
     let(:user) { create(:user) }
     let(:discount_code) { nil }
     let(:discount_code_string) { nil }
+    let(:shopping_cart) { create(
+        :shopping_cart, user: user, discount_code: discount_code,
+                        shipping_method: :electronic) }
     let(:workflow) { PreparesCartForPayPal.new(
         user: user, purchase_amount_cents: 3100,
         expected_ticket_ids: "#{ticket_1.id} #{ticket_2.id}",
         payment_reference: "reference",
-        discount_code_string: discount_code_string) }
+        shopping_cart: shopping_cart) }
 
     before(:example) do
       [ticket_1, ticket_2].each { |t| t.place_in_cart_for(user) }
@@ -58,7 +61,7 @@ describe PreparesCartForPayPal, :vcr, :aggregate_failures do
           user: user, purchase_amount_cents: 2350,
           expected_ticket_ids: "#{ticket_1.id} #{ticket_2.id}",
           payment_reference: "reference",
-          discount_code_string: discount_code_string) }
+          shopping_cart: shopping_cart) }
 
       it "creates a transaction object" do
         workflow.run

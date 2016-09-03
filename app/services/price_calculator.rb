@@ -13,7 +13,7 @@ class PriceCalculator
   end
 
   def shipping_fee
-    case shipping
+    case shipping.to_sym
     when :standard then Money.new(200)
     when :overnight then Money.new(1000)
     else

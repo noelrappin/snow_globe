@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160902113711) do
+ActiveRecord::Schema.define(version: 20160903180301) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -122,6 +122,7 @@ ActiveRecord::Schema.define(version: 20160902113711) do
     t.json     "partials"
     t.integer  "billing_address_id"
     t.integer  "shipping_address_id"
+    t.integer  "shipping_method",     default: 0
     t.index ["administrator_id"], name: "index_payments_on_administrator_id", using: :btree
     t.index ["discount_code_id"], name: "index_payments_on_discount_code_id", using: :btree
     t.index ["original_payment_id"], name: "index_payments_on_original_payment_id", using: :btree

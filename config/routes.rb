@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resources :subscriptions
   resources :refund
   resources :discount_codes
+  resources :addresses
 
   resource :daily_revenue_report
 

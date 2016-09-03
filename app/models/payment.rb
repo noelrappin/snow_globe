@@ -21,6 +21,8 @@ class Payment < ActiveRecord::Base
   enum status: {created: 0, succeeded: 1, pending: 2, failed: 3,
                 refund_pending: 4, refunded: 5}
 
+  enum shipping_method: {electronic: 0, standard: 1, overnight: 2}
+
   def total_cost
     tickets.map(&:price).sum
   end

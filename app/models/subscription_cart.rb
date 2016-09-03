@@ -2,6 +2,10 @@ class SubscriptionCart
 
   attr_accessor :user
 
+  def address
+    nil
+  end
+
   def initialize(user)
     @user = user
   end

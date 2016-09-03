@@ -1,5 +1,11 @@
-h3 Payment Options
+h3 Shipping Info
+- if @cart.address.present?
+  .active_shipping_method= @cart.shipping_method
+  .active_shipping_address= @cart.address.all_fields
+- else
+  = link_to "Select Shipping Method", new_address_path, id: "shipping_details"
 
+h3 Payment Options
 
 = form_tag(discount_codes_path, id: "discount-code-form") do
   .form-group
@@ -9,6 +15,8 @@ h3 Payment Options
       input.form-control.valid-field(name="discount_code" id="discount_code")
     .col-sm-3
       = submit_tag("Apply Code", class: "btn btn-primary", id: "apply_code")
+
+.clearfix
 
 = form_tag(payments_path,
       class: "credit-card-form form-horizontal", id: "payment-form") do
@@ -98,74 +106,9 @@ h3 Payment Options
         .col-sm-1
           input.form-control.valid-field(data-stripe="cvc" id="cvc")
 
-  h3 Billing Address
-  .row
-    .form-group
-      .col-sm-2
-        = label_tag(:billing_address_1, "Address Line 1",
-          class: "control-label")
-      .col-sm-3
-        = text_field_tag("billing_address[address_1]", "",
-            class: "form-control")
-  .row
-    .form-group
-      .col-sm-2
-        = label_tag(:billing_address_2, "Address Line 2",
-          class: "control-label")
-      .col-sm-3
-        = text_field_tag("billing_address[address_2]", "",
-            class: "form-control")
-
-  .row
-    .form-group
-      .col-sm-2
-        = label_tag(:billing_address_city, "City/State/Zip",
-          class: "control-label")
-      .col-sm-3
-        = text_field_tag("billing_address[city]", "",
-            class: "form-control")
-      .col-sm-2
-        = select_tag("billing_address[state]",
-          options_for_select(CS.states(:us).invert), class: "form-control")
-      .col-sm-2
-        = text_field_tag("billing_address[zip]", "",
-            class: "form-control", placeholder: "Zip")
-
-  h3 Shipping Address
-  .row
-    .form-group
-      .col-sm-2
-        = label_tag(:shipping_address_1, "Address Line 1",
-          class: "control-label")
-      .col-sm-3
-        = text_field_tag("shipping_address[address_1]", "",
-            class: "form-control")
-  .row
-    .form-group
-      .col-sm-2
-        = label_tag(:shipping_address_2, "Address Line 2",
-          class: "control-label")
-      .col-sm-3
-        = text_field_tag("shipping_address[address_2]", "",
-            class: "form-control")
-
-  .row
-    .form-group
-      .col-sm-2
-        = label_tag(:shipping_address_city, "City/State/Zip",
-          class: "control-label")
-      .col-sm-3
-        = text_field_tag("shipping_address[city]", "",
-            class: "form-control")
-      .col-sm-2
-        = select_tag("shipping_address[state]",
-          options_for_select(CS.states(:us).invert), class: "form-control")
-      .col-sm-2
-        = text_field_tag("shipping_address[zip]", "",
-            class: "form-control", placeholder: "Zip")
-
 
   .row
     .form-group
       .col-sm-3
-        = submit_tag("Purchase Cart", class: "btn btn-default", id: "purchase")
+        = submit_tag("Purchase Cart",
+          class: "btn btn-default", id: "purchase")

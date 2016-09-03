@@ -4,12 +4,15 @@ class ShoppingCart < ApplicationRecord
   belongs_to :address
   belongs_to :discount_code
 
+  enum shipping_method: {electronic: 0, standard: 1, overnight: 2}
+
   def self.for(user:)
     ShoppingCart.find_or_create_by(user_id: user.id)
   end
 
   def price_calculator
-    @price_calculator ||= PriceCalculator.new(tickets, discount_code)
+    @price_calculator ||= PriceCalculator.new(
+      tickets, discount_code, shipping_method.to_s)
   end
 
   def total_cost
