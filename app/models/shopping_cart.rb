@@ -12,7 +12,7 @@ class ShoppingCart < ApplicationRecord
 
   def price_calculator
     @price_calculator ||= PriceCalculator.new(
-      tickets, discount_code, shipping_method.to_s)
+        tickets, discount_code, shipping_method.to_s)
   end
 
   def total_cost
