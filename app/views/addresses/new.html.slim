@@ -6,10 +6,7 @@ h3 Shipping Address
         = label_tag(:shipping_method)
       .col-sm-2
         = select_tag("shipping_method",
-            options_for_select([["None", :electronic],
-              ["Standard", :standard],
-              ["Overnight", :overnight]]),
-            class: "form-control")
+            options_for_select(mailer_options), class: "form-control")
   .row
     .form-group
       .col-sm-2
