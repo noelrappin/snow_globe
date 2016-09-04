@@ -63,6 +63,7 @@ class PreparesCart
           expected_ticket_ids: expected_ticket_ids) unless pre_purchase_valid?
       update_tickets
       create_payment
+      clear_cart
       on_success
     end
   rescue
@@ -80,6 +81,10 @@ class PreparesCart
     payment.update!(payment_attributes)
     payment.create_line_items(tickets)
     @success = payment.valid?
+  end
+
+  def clear_cart
+    shopping_cart.destroy
   end
 
   # START: code_payment_attributes

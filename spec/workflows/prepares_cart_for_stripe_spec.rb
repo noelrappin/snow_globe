@@ -53,6 +53,7 @@ describe PreparesCartForStripe, :vcr, :aggregate_failures do
       expect(workflow.payment_attributes).to match(attributes)
       expect(workflow.success).to be_truthy
       expect(workflow.payment.payment_line_items.size).to eq(2)
+      expect(ShoppingCart.find_by(user_id: user.id)).to be_nil
     end
 
     context "with a discount code" do

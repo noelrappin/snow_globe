@@ -1,3 +1,4 @@
+# START: ar_shopping_cart
 class ShoppingCart < ApplicationRecord
 
   belongs_to :user
@@ -15,11 +16,13 @@ class ShoppingCart < ApplicationRecord
         tickets, discount_code, shipping_method.to_s)
   end
 
+  delegate :processing_fee, to: :price_calculator
+
+# END: ar_shopping_cart
+
   def total_cost
     price_calculator.total_price
   end
-
-  delegate :processing_fee, to: :price_calculator
 
   def tickets
     @tickets ||= user.tickets_in_cart
