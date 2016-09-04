@@ -9,7 +9,7 @@ class PriceCalculator
   end
 
   def processing_fee
-    discount_code.apply_to(subtotal).positive? ? Money.new(100) : Money.zero
+    (subtotal - discount).positive? ? Money.new(100) : Money.zero
   end
 
   def shipping_fee

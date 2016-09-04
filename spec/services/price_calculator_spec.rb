@@ -7,6 +7,7 @@ RSpec.describe PriceCalculator, :aggregate_failures do
   let(:calculator) { PriceCalculator.new(
       [ticket_one, ticket_two], discount_code) }
 
+  # START: basic_fee
   describe "without a discount code" do
     let(:discount_code) { NullDiscountCode.new }
 
@@ -21,6 +22,7 @@ RSpec.describe PriceCalculator, :aggregate_failures do
       expect(calculator.total_price).to eq(Money.new(3600))
     end
   end
+  # END: basic_fee
 
   describe "with an applicable discount_code" do
     let(:discount_code) { DiscountCode.new(percentage: 25) }
@@ -37,6 +39,7 @@ RSpec.describe PriceCalculator, :aggregate_failures do
     end
   end
 
+  # START: free_ticket
   describe "with a free ticket" do
     let(:discount_code) { DiscountCode.new(percentage: 100) }
 
@@ -50,6 +53,7 @@ RSpec.describe PriceCalculator, :aggregate_failures do
       expect(calculator.total_price).to eq(Money.zero)
     end
   end
+  # END: free_ticket
 
   describe "with a discount code with a good min value" do
     let(:discount_code) { DiscountCode.new(
@@ -97,6 +101,7 @@ RSpec.describe PriceCalculator, :aggregate_failures do
     end
   end
 
+  # START: shipping_fee
   describe "with a shipping fee" do
     let(:calculator) { PriceCalculator.new(
         [ticket_one, ticket_two], discount_code, :standard) }
@@ -115,5 +120,6 @@ RSpec.describe PriceCalculator, :aggregate_failures do
     end
 
   end
+  # END: shipping_fee
 
 end
