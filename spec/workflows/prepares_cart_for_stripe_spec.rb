@@ -19,6 +19,8 @@ describe PreparesCartForStripe, :vcr, :aggregate_failures do
   let(:user) { create(:user) }
   let(:discount_code) { nil }
   let(:discount_code_string) { nil }
+
+  # START: cart_setup
   let(:shopping_cart) { create(
       :shopping_cart, user: user, discount_code: discount_code,
                       shipping_method: :electronic) }
@@ -34,6 +36,7 @@ describe PreparesCartForStripe, :vcr, :aggregate_failures do
       partials: {ticket_cents: [1500, 1500], processing_fee_cents: 100},
       payment_method: "stripe", shipping_method: "electronic",
       shipping_address: nil} }
+  # END: cart_setup
 
   before(:example) do
     [ticket_1, ticket_2].each { |t| t.place_in_cart_for(user) }

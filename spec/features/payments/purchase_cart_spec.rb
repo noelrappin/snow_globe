@@ -48,6 +48,7 @@ describe "purchasing a cart", :js do
 
   end
 
+  # START: shipping_features
   context "can add a shipping method" do
 
     it "comes back to the cart with shipping" do
@@ -67,5 +68,6 @@ describe "purchasing a cart", :js do
       expect(page).to have_selector(".total", text: "$41")
     end
   end
+  # END: shipping_features
 
 end

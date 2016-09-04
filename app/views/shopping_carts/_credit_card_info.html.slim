@@ -5,6 +5,7 @@ h3 Shipping Info
 - else
   = link_to "Select Shipping Method", new_address_path, id: "shipping_details"
 
+/# START: discount_code
 h3 Payment Options
 
 = form_tag(discount_codes_path, id: "discount-code-form") do
@@ -15,6 +16,7 @@ h3 Payment Options
       input.form-control.valid-field(name="discount_code" id="discount_code")
     .col-sm-3
       = submit_tag("Apply Code", class: "btn btn-primary", id: "apply_code")
+/# END: discount_code
 
 .clearfix
 
