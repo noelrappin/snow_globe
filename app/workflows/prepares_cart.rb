@@ -53,7 +53,7 @@ class PreparesCart
     Payment.find_by(reference: payment_reference)
   end
 
-  # START: run_with_exception
+  # START: code_payment_attributes
   def run
     Payment.transaction do
       raise PreExistingPurchaseException.new(purchase) if existing_payment
@@ -70,7 +70,20 @@ class PreparesCart
     on_failure
     raise
   end
-  # END: run_with_exception
+
+  def clear_cart
+    shopping_cart.destroy
+  end
+
+  def payment_attributes
+    {user_id: user.id, price_cents: purchase_amount.cents,
+     status: "created", reference: Payment.generate_reference,
+     discount_code_id: discount_code&.id,
+     partials: price_calculator.breakdown,
+     shipping_method: shopping_cart.shipping_method,
+     shipping_address: shopping_cart.address}
+  end
+  # END: code_payment_attributes
 
   def redirect_on_success_url
     nil
@@ -82,21 +95,6 @@ class PreparesCart
     payment.create_line_items(tickets)
     @success = payment.valid?
   end
-
-  def clear_cart
-    shopping_cart.destroy
-  end
-
-  # START: code_payment_attributes
-  def payment_attributes
-    {user_id: user.id, price_cents: purchase_amount.cents,
-     status: "created", reference: Payment.generate_reference,
-     discount_code_id: discount_code&.id,
-     partials: price_calculator.breakdown,
-     shipping_method: shopping_cart.shipping_method,
-     shipping_address: shopping_cart.address}
-  end
-  # END: code_payment_attributes
 
   def success?
     success

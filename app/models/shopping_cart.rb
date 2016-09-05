@@ -18,7 +18,7 @@ class ShoppingCart < ApplicationRecord
 
   delegate :processing_fee, to: :price_calculator
 
-# END: ar_shopping_cart
+  # END: ar_shopping_cart
 
   def total_cost
     price_calculator.total_price
