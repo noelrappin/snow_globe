@@ -22,7 +22,9 @@ class PreparesCart
 
   def price_calculator
     @price_calculator ||= PriceCalculator.new(
-        tickets, discount_code, shopping_cart.shipping_method)
+        tickets, discount_code, shopping_cart.shipping_method,
+        address: shopping_cart.address, user: user,
+        tax_id: "cart_#{shopping_cart.id}")
   end
 
   delegate :total_price, to: :price_calculator

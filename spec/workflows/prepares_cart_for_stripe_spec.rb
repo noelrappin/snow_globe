@@ -100,7 +100,10 @@ describe PreparesCartForStripe, :vcr, :aggregate_failures do
             partials: {
                 "ticket_cents" => [1500, 1500],
                 "processing_fee_cents" => 100,
-                "shipping_cents" => 200},
+                "shipping_cents" => 200,
+                "sales_tax" =>
+                    {"ticket_cents" => 0, "processing_cents" => 10.25,
+                     "shipping_cents" => 20.5}},
             reference: a_truthy_value, payment_method: "stripe",
             shipping_address: address, shipping_method: "standard")
       end

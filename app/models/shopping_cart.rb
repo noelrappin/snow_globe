@@ -13,7 +13,8 @@ class ShoppingCart < ApplicationRecord
 
   def price_calculator
     @price_calculator ||= PriceCalculator.new(
-        tickets, discount_code, shipping_method.to_s)
+        tickets, discount_code, shipping_method.to_s,
+        address: address, user: user, tax_id: "cart_#{id}")
   end
 
   delegate :processing_fee, to: :price_calculator

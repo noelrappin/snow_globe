@@ -14,6 +14,7 @@ class Payment < ActiveRecord::Base
   belongs_to :original_payment, class_name: "Payment"
   belongs_to :billing_address, class_name: "Address"
   belongs_to :shipping_address, class_name: "Address"
+  belongs_to :discount_code
 
   monetize :price_cents
   monetize :discount_cents
@@ -74,6 +75,13 @@ class Payment < ActiveRecord::Base
 
   def full_value
     price + discount
+  end
+
+  def price_calculator
+    @price_calculator ||= PriceCalculator.new(
+        tickets, discount_code, shipping_method,
+        address: shipping_address, user: user,
+        tax_id: "payment_#{shopping_cart.id}")
   end
 
 end

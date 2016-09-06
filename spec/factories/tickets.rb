@@ -4,6 +4,6 @@ FactoryGirl.define do
     performance nil
     status 0
     access 0
-    price 100
+    price 1000
   end
 end
