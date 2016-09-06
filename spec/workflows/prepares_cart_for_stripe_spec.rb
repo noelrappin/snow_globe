@@ -88,7 +88,7 @@ describe PreparesCartForStripe, :vcr, :aggregate_failures do
           user: user, discount_code: discount_code,
           shipping_method: :standard, address: address) }
       let(:workflow) { PreparesCartForStripe.new(
-          user: user, purchase_amount_cents: 3300,
+          user: user, purchase_amount_cents: 3331,
           expected_ticket_ids: "#{ticket_1.id} #{ticket_2.id}",
           payment_reference: "reference", stripe_token: token,
           shopping_cart: shopping_cart) }
@@ -96,7 +96,7 @@ describe PreparesCartForStripe, :vcr, :aggregate_failures do
       it "handles shipping" do
         workflow.run
         expect(workflow.payment).to have_attributes(
-            user_id: user.id, price_cents: 3300,
+            user_id: user.id, price_cents: 3331,
             partials: {
                 "ticket_cents" => [1500, 1500],
                 "processing_fee_cents" => 100,

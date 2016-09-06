@@ -17,7 +17,7 @@ class ShoppingCart < ApplicationRecord
         address: address, user: user, tax_id: "cart_#{id}")
   end
 
-  delegate :processing_fee, to: :price_calculator
+  delegate :processing_fee, :sales_tax, to: :price_calculator
 
   # END: ar_shopping_cart
 

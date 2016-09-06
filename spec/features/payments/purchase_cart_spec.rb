@@ -49,7 +49,7 @@ describe "purchasing a cart", :js do
   end
 
   # START: shipping_features
-  context "can add a shipping method" do
+  context "can add a shipping method", :vcr do
 
     it "comes back to the cart with shipping" do
       tickets(:midsummer_bums_1).place_in_cart_for(users(:buyer))
@@ -65,7 +65,7 @@ describe "purchasing a cart", :js do
       click_on "add_address"
       expect(page).to have_selector(
           ".active_shipping_method", text: "overnight")
-      expect(page).to have_selector(".total", text: "$41")
+      expect(page).to have_selector(".total", text: "$42.13")
     end
   end
   # END: shipping_features

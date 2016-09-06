@@ -12,7 +12,7 @@ http_interactions:
       Accept:
       - "*/*"
       Date:
-      - Tue, 06 Sep 2016 00:53:55 GMT
+      - Tue, 06 Sep 2016 01:32:33 GMT
   response:
     status:
       code: 200
@@ -35,7 +35,7 @@ http_interactions:
       Access-Control-Allow-Headers:
       - Content-Type, X-Requested-With
       Date:
-      - Tue, 06 Sep 2016 00:53:49 GMT
+      - Tue, 06 Sep 2016 01:32:26 GMT
       Content-Length:
       - '62003'
     body:
@@ -832,7 +832,7 @@ http_interactions:
         \     <http:address location=\"https://api.taxcloud.net/1.0/taxcloud.asmx\"
         />\r\n    </wsdl:port>\r\n  </wsdl:service>\r\n</wsdl:definitions>"
     http_version: 
-  recorded_at: Tue, 06 Sep 2016 00:53:55 GMT
+  recorded_at: Tue, 06 Sep 2016 01:32:33 GMT
 - request:
     method: post
     uri: https://api.taxcloud.net/1.0/taxcloud.asmx
@@ -850,7 +850,7 @@ http_interactions:
       Accept:
       - "*/*"
       Date:
-      - Tue, 06 Sep 2016 00:53:55 GMT
+      - Tue, 06 Sep 2016 01:32:33 GMT
       Soapaction:
       - '"http://taxcloud.net/Lookup"'
       Content-Type:
@@ -879,7 +879,7 @@ http_interactions:
       Access-Control-Allow-Headers:
       - Content-Type, X-Requested-With
       Date:
-      - Tue, 06 Sep 2016 00:53:49 GMT
+      - Tue, 06 Sep 2016 01:32:26 GMT
       Content-Length:
       - '729'
     body:
@@ -889,7 +889,7 @@ http_interactions:
         xmlns="http://taxcloud.net"><LookupResult><ResponseType>OK</ResponseType><Messages
         /><CartID>cart_1</CartID><CartItemsResponse><CartItemResponse><CartItemIndex>0</CartItemIndex><TaxAmount>0</TaxAmount></CartItemResponse><CartItemResponse><CartItemIndex>1</CartItemIndex><TaxAmount>0.1025</TaxAmount></CartItemResponse><CartItemResponse><CartItemIndex>2</CartItemIndex><TaxAmount>0.205</TaxAmount></CartItemResponse></CartItemsResponse></LookupResult></LookupResponse></soap:Body></soap:Envelope>
     http_version: 
-  recorded_at: Tue, 06 Sep 2016 00:53:55 GMT
+  recorded_at: Tue, 06 Sep 2016 01:32:33 GMT
 - request:
     method: post
     uri: https://api.stripe.com/v1/tokens
@@ -923,7 +923,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Tue, 06 Sep 2016 00:53:56 GMT
+      - Tue, 06 Sep 2016 01:32:34 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -941,7 +941,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_98pVveMa9NFXqi
+      - req_98q8ErE8WMjHkT
       Stripe-Version:
       - '2016-07-06'
       Strict-Transport-Security:
@@ -950,10 +950,10 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "tok_18qXqaDTh2DhiR4RJnnXiN2D",
+          "id": "tok_18qYRyDTh2DhiR4RbiXOCxMw",
           "object": "token",
           "card": {
-            "id": "card_18qXqaDTh2DhiR4RMdnovXaz",
+            "id": "card_18qYRyDTh2DhiR4Rnq1Yx8iU",
             "object": "card",
             "address_city": null,
             "address_country": null,
@@ -977,11 +977,11 @@ http_interactions:
             "tokenization_method": null
           },
           "client_ip": "24.13.236.96",
-          "created": 1473123236,
+          "created": 1473125554,
           "livemode": false,
           "type": "card",
           "used": false
         }
     http_version: 
-  recorded_at: Tue, 06 Sep 2016 00:53:57 GMT
+  recorded_at: Tue, 06 Sep 2016 01:32:34 GMT
 recorded_with: VCR 3.0.3

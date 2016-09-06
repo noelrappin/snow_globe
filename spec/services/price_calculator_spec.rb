@@ -142,7 +142,7 @@ RSpec.describe PriceCalculator, :aggregate_failures do
           shipping_cents: 200,
           sales_tax: {
               ticket_cents: 0.0, processing_cents: 10.25, shipping_cents: 20.5})
-      expect(calculator.total_price).to eq(Money.new(3800))
+      expect(calculator.total_price).to eq(Money.new(3831))
     end
   end
 

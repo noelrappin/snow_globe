@@ -62,7 +62,7 @@ class PriceCalculator
   end
 
   def total_price
-    subtotal - discount + processing_fee + shipping_fee
+    subtotal - discount + processing_fee + shipping_fee + sales_tax
   end
 
   def discount
