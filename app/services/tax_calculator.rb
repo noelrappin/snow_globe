@@ -50,6 +50,18 @@ class TaxCalculator
     Hash[types.zip(taxes)]
   end
 
+  def authorized_with_capture(order_id)
+    lookup
+    transaction.order_id = order_id
+    transaction.authorized_with_capture
+  end
+
+  def return(order_id)
+    lookup
+    transaction.order_id = order_id
+    transaction.returned
+  end
+
   class Item
 
     attr_reader :price, :quantity, :type

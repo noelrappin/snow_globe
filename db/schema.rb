@@ -119,7 +119,7 @@ ActiveRecord::Schema.define(version: 20160903180301) do
     t.integer  "discount_code_id"
     t.integer  "discount_cents",      default: 0,     null: false
     t.string   "discount_currency",   default: "USD", null: false
-    t.json     "partials"
+    t.json     "w"
     t.integer  "billing_address_id"
     t.integer  "shipping_address_id"
     t.integer  "shipping_method",     default: 0

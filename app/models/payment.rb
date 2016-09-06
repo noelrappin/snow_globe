@@ -84,4 +84,8 @@ class Payment < ActiveRecord::Base
         tax_id: "payment_#{shopping_cart.id}")
   end
 
+  def taxes_paid
+    partials.fetch(:sales_tax, {}).values.sum
+  end
+
 end

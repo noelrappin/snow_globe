@@ -6,6 +6,7 @@ class CashPurchasesCart < PreparesCart
 
   def on_success
     @success = true
+    NotifyTaxCloudJob.perform_later(payment)
   end
 
   def payment_attributes
