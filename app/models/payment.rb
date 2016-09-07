@@ -77,15 +77,17 @@ class Payment < ActiveRecord::Base
     price + discount
   end
 
+  # START: tax
   def price_calculator
     @price_calculator ||= PriceCalculator.new(
         tickets, discount_code, shipping_method,
         address: shipping_address, user: user,
-        tax_id: "payment_#{shopping_cart.id}")
+        tax_id: "payment_#{reference}")
   end
 
   def taxes_paid
     partials.fetch(:sales_tax, {}).values.sum
   end
+  # END: tax
 
 end

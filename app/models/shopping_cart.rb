@@ -1,4 +1,3 @@
-# START: ar_shopping_cart
 class ShoppingCart < ApplicationRecord
 
   belongs_to :user
@@ -11,6 +10,7 @@ class ShoppingCart < ApplicationRecord
     ShoppingCart.find_or_create_by(user_id: user.id)
   end
 
+  # START: tax
   def price_calculator
     @price_calculator ||= PriceCalculator.new(
         tickets, discount_code, shipping_method.to_s,
@@ -18,8 +18,7 @@ class ShoppingCart < ApplicationRecord
   end
 
   delegate :processing_fee, :sales_tax, to: :price_calculator
-
-  # END: ar_shopping_cart
+  # START: tax
 
   def total_cost
     price_calculator.total_price

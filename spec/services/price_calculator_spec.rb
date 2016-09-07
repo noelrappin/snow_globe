@@ -122,6 +122,7 @@ RSpec.describe PriceCalculator, :aggregate_failures do
   end
   # END: shipping_fee
 
+  # START: taxes
   describe "with taxes", :vcr do
     let(:user) { build_stubbed(:user) }
     let(:address) { build_stubbed(:address) }
@@ -145,5 +146,6 @@ RSpec.describe PriceCalculator, :aggregate_failures do
       expect(calculator.total_price).to eq(Money.new(3831))
     end
   end
+  # END: taxes
 
 end

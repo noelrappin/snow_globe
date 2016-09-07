@@ -1,5 +1,6 @@
 class PriceCalculator
 
+  # START: tax_setup
   attr_accessor :tickets, :discount_code, :shipping, :user, :address, :tax_id
 
   def initialize(tickets = [], discount_code = nil, shipping = :none,
@@ -11,6 +12,7 @@ class PriceCalculator
     @address = address
     @tax_id = tax_id
   end
+  #END: tax_setup
 
   def processing_fee
     (subtotal - discount).positive? ? Money.new(100) : Money.zero
@@ -29,6 +31,7 @@ class PriceCalculator
     tickets.map(&:price).sum
   end
 
+  # START: taxes
   def breakdown
     result = {ticket_cents: tickets.map { |t| t.price.cents }}
     if processing_fee.nonzero?
@@ -64,6 +67,7 @@ class PriceCalculator
   def total_price
     subtotal - discount + processing_fee + shipping_fee + sales_tax
   end
+  # END: taxes
 
   def discount
     discount_code.discount_for(subtotal)

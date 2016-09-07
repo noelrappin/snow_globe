@@ -1,3 +1,4 @@
+# START: main
 class TaxCalculator
 
   attr_accessor :user, :cart_id, :address, :items
@@ -49,7 +50,9 @@ class TaxCalculator
     end
     Hash[types.zip(taxes)]
   end
+# END: main
 
+# START: authorize
   def authorized_with_capture(order_id)
     lookup
     transaction.order_id = order_id
@@ -61,7 +64,9 @@ class TaxCalculator
     transaction.order_id = order_id
     transaction.returned
   end
+# END: authorize
 
+# START: item
   class Item
 
     attr_reader :price, :quantity, :type
@@ -116,3 +121,4 @@ class TaxCalculator
   end
 
 end
+# END: item
