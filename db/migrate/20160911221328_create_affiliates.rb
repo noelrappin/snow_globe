@@ -6,10 +6,8 @@ class CreateAffiliates < ActiveRecord::Migration[5.0]
       t.references :user, foreign_key: true
       t.string :country
       t.string :stripe_id
-      t.string :stripe_key
-      t.string :stripe_secret
       t.string :tag
-
+      t.json :verification_needed
       t.timestamps
     end
 
