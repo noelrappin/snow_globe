@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160903180301) do
+ActiveRecord::Schema.define(version: 20160911221328) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,19 @@ ActiveRecord::Schema.define(version: 20160903180301) do
     t.string   "zip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "affiliates", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.string   "country"
+    t.string   "stripe_id"
+    t.string   "stripe_key"
+    t.string   "stripe_secret"
+    t.string   "tag"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["user_id"], name: "index_affiliates_on_user_id", using: :btree
   end
 
   create_table "day_revenues", force: :cascade do |t|
@@ -105,25 +118,29 @@ ActiveRecord::Schema.define(version: 20160903180301) do
 
   create_table "payments", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "price_cents",         default: 0,     null: false
-    t.string   "price_currency",      default: "USD", null: false
+    t.integer  "price_cents",                default: 0,     null: false
+    t.string   "price_currency",             default: "USD", null: false
     t.integer  "status"
     t.string   "reference"
     t.string   "payment_method"
     t.string   "response_id"
     t.json     "full_response"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
     t.integer  "original_payment_id"
     t.integer  "administrator_id"
     t.integer  "discount_code_id"
-    t.integer  "discount_cents",      default: 0,     null: false
-    t.string   "discount_currency",   default: "USD", null: false
+    t.integer  "discount_cents",             default: 0,     null: false
+    t.string   "discount_currency",          default: "USD", null: false
     t.json     "partials"
     t.integer  "billing_address_id"
     t.integer  "shipping_address_id"
-    t.integer  "shipping_method",     default: 0
+    t.integer  "shipping_method",            default: 0
+    t.integer  "affiliate_id"
+    t.integer  "affiliate_payment_cents",    default: 0,     null: false
+    t.string   "affiliate_payment_currency", default: "USD", null: false
     t.index ["administrator_id"], name: "index_payments_on_administrator_id", using: :btree
+    t.index ["affiliate_id"], name: "index_payments_on_affiliate_id", using: :btree
     t.index ["discount_code_id"], name: "index_payments_on_discount_code_id", using: :btree
     t.index ["original_payment_id"], name: "index_payments_on_original_payment_id", using: :btree
     t.index ["user_id"], name: "index_payments_on_user_id", using: :btree
@@ -227,7 +244,9 @@ ActiveRecord::Schema.define(version: 20160903180301) do
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
   end
 
+  add_foreign_key "affiliates", "users"
   add_foreign_key "payment_line_items", "payments"
+  add_foreign_key "payments", "affiliates"
   add_foreign_key "payments", "users"
   add_foreign_key "performances", "events"
   add_foreign_key "shopping_carts", "addresses"

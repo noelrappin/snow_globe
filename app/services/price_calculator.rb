@@ -12,7 +12,7 @@ class PriceCalculator
     @address = address
     @tax_id = tax_id
   end
-  #END: tax_setup
+  # END: tax_setup
 
   def processing_fee
     (subtotal - discount).positive? ? Money.new(100) : Money.zero
