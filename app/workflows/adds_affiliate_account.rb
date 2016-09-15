@@ -1,9 +1,11 @@
 class AddsAffiliateAccount
 
-  attr_accessor :user, :affiliate, :success
+  attr_accessor :user, :affiliate, :success, :tos_checked, :request_ip
 
-  def initialize(user:)
+  def initialize(user:, tos_checked: nil, request_ip: nil)
     @user = user
+    @tos_checked = tos_checked
+    @request_ip = request_ip
     @success = false
   end
 
@@ -18,7 +20,8 @@ class AddsAffiliateAccount
   end
 
   def acquire_stripe_id
-    StripeAccount.new(@affiliate).account.id
+    StripeAccount.new(
+      @affiliate, tos_checked: tos_checked, request_ip: request_ip).account.id
   end
 
   def success?

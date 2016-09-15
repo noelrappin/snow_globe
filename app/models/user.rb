@@ -11,6 +11,7 @@ class User < ApplicationRecord
 
   has_many :tickets
   has_many :subscriptions
+  has_many :affiliates
 
   # START: cellphone_accessor
   attr_accessor :cellphone_number

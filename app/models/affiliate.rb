@@ -1,12 +1,11 @@
 class Affiliate < ApplicationRecord
 
+  include HasReference
+
   belongs_to :user
 
   def self.generate_tag
-    loop do
-      result = SecureRandom.hex(6)
-      return result unless exists?(tag: result)
-    end
+    generate_reference(length: 5, attribute: :tag)
   end
 
 end

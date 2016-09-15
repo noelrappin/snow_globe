@@ -44,11 +44,10 @@ ActiveRecord::Schema.define(version: 20160911221328) do
     t.integer  "user_id"
     t.string   "country"
     t.string   "stripe_id"
-    t.string   "stripe_key"
-    t.string   "stripe_secret"
     t.string   "tag"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.json     "verification_needed"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.index ["user_id"], name: "index_affiliates_on_user_id", using: :btree
   end
 

@@ -1,9 +1,11 @@
 class StripeAccount
 
-  attr_accessor :affiliate, :account
+  attr_accessor :affiliate, :account, :tos_checked, :request_ip
 
-  def initialize(affiliate)
+  def initialize(affiliate, tos_checked:, request_ip:)
     @affiliate = affiliate
+    @tos_checked = tos_checked
+    @request_ip = request_ip
   end
 
   def account
@@ -17,7 +19,11 @@ class StripeAccount
   end
 
   private def create_account
-    Stripe::Account.create(country: affiliate.country, managed: true)
+    account_params = {country: affiliate.country, managed: true}
+    if tos_checked
+      account_params[:tos_acceptance] = {date: Time.now.to_i, ip: request_ip}
+    end
+    Stripe::Account.create(account_params)
   end
 
   private def retrieve_account
