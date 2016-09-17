@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :set_paper_trail_whodunnit
+  before_action :set_affiliate
 
   include Pundit
 
@@ -30,6 +31,10 @@ class ApplicationController < ActionController::Base
 
   def authenticate_admin_user!
     raise Pundit::NotAuthorizedError unless current_user&.admin?
+  end
+
+  def set_affiliate
+    AddsAffiliateToCart.new(user: current_user, tag: params[:tag]).run
   end
 
   private def user_not_authorized

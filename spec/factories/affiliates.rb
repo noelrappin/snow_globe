@@ -4,8 +4,6 @@ FactoryGirl.define do
     user nil
     country "MyString"
     stripe_id "MyString"
-    stripe_key "MyString"
-    stripe_secret "MyString"
     tag "MyString"
   end
 end

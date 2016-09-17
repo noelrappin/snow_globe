@@ -20,6 +20,8 @@ RSpec.describe PriceCalculator, :aggregate_failures do
       expect(calculator.breakdown).to match(
           ticket_cents: [1500, 2000], processing_fee_cents: 100)
       expect(calculator.total_price).to eq(Money.new(3600))
+      expect(calculator.affiliate_payment).to eq(Money.new(175))
+      expect(calculator.affliate_application_fee).to eq(Money.new(3425))
     end
   end
   # END: basic_fee

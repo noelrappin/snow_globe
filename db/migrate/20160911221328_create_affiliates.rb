@@ -16,6 +16,10 @@ class CreateAffiliates < ActiveRecord::Migration[5.0]
       t.integer :affiliate_payment_cents, default: 0, null: false
       t.string  :affiliate_payment_currency, default: "USD", null: false
     end
+
+    change_table :shopping_carts do |t|
+      t.references :affiliate
+    end
   end
 
 end

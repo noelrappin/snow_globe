@@ -21,7 +21,7 @@ class AddsAffiliateAccount
 
   def acquire_stripe_id
     StripeAccount.new(
-      @affiliate, tos_checked: tos_checked, request_ip: request_ip).account.id
+        @affiliate, tos_checked: tos_checked, request_ip: request_ip).account.id
   end
 
   def success?

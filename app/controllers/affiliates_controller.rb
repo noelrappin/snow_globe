@@ -1,7 +1,6 @@
 class AffiliatesController < ApplicationController
 
   def new
-
   end
 
   def show

@@ -31,7 +31,6 @@ class PriceCalculator
     tickets.map(&:price).sum
   end
 
-  # START: taxes
   def breakdown
     result = {ticket_cents: tickets.map { |t| t.price.cents }}
     if processing_fee.nonzero?
@@ -64,13 +63,27 @@ class PriceCalculator
     items
   end
 
+  # START: affiliate
   def total_price
-    subtotal - discount + processing_fee + shipping_fee + sales_tax
+    base_price + processing_fee + shipping_fee + sales_tax
   end
-  # END: taxes
+
+  def base_price
+    subtotal - discount
+  end
 
   def discount
     discount_code.discount_for(subtotal)
   end
+
+  def affiliate_payment
+    base_price * 0.05
+  end
+
+  def affliate_application_fee
+    total_price - affiliate_payment
+  end
+
+  # END: affiliate
 
 end

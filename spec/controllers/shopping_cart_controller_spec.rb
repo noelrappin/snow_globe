@@ -3,7 +3,7 @@ require "rails_helper"
 describe ShoppingCartsController do
 
   describe "update" do
-    let(:user) { instance_spy(User) }
+    let(:user) { create(:user) }
     let(:performance) { instance_spy(
         Performance, event: build_stubbed(:event)) }
     let(:action) { instance_spy(AddsToCart) }

@@ -15,9 +15,11 @@ class Payment < ActiveRecord::Base
   belongs_to :billing_address, class_name: "Address"
   belongs_to :shipping_address, class_name: "Address"
   belongs_to :discount_code
+  belongs_to :affiliate
 
   monetize :price_cents
   monetize :discount_cents
+  monetize :affiliate_payment_cents
 
   enum status: {created: 0, succeeded: 1, pending: 2, failed: 3,
                 refund_pending: 4, refunded: 5}
@@ -77,7 +79,6 @@ class Payment < ActiveRecord::Base
     price + discount
   end
 
-  # START: tax
   def price_calculator
     @price_calculator ||= PriceCalculator.new(
         tickets, discount_code, shipping_method,
@@ -88,6 +89,12 @@ class Payment < ActiveRecord::Base
   def taxes_paid
     partials.fetch(:sales_tax, {}).values.sum
   end
-  # END: tax
+
+  # START: affiliate
+  def application_fee
+    return Money.zero if affiliate.blank?
+    price - affiliate_payment
+  end
+  # END: affiliate
 
 end
