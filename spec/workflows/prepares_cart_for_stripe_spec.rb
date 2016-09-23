@@ -59,6 +59,7 @@ describe PreparesCartForStripe, :vcr, :aggregate_failures do
       expect(ShoppingCart.find_by(user_id: user.id)).to be_nil
     end
 
+    # START: affiliate
     context "with an affiliate" do
 
       let(:affiliate) { create(:affiliate) }
@@ -74,6 +75,7 @@ describe PreparesCartForStripe, :vcr, :aggregate_failures do
       end
 
     end
+    # END: affiliate
 
     context "with a discount code" do
       let(:workflow) { PreparesCartForStripe.new(

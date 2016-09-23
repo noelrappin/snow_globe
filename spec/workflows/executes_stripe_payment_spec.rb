@@ -5,7 +5,7 @@ describe ExecutesStripePurchase, :vcr, :aggregate_failures do
   let(:payment) { Payment.create(
       user_id: user.id, price_cents: 2500, status: "created",
       reference: Payment.generate_reference, payment_method: "stripe") }
-  let(:action) { ExecutesStripePurchase.new(payment, token.id) }
+  let(:workflow) { ExecutesStripePurchase.new(payment, token.id) }
 
   describe "successful credit card purchase" do
     let(:token) { StripeToken.new(
@@ -14,13 +14,13 @@ describe ExecutesStripePurchase, :vcr, :aggregate_failures do
 
     context "without an affiliate" do
       before(:example) do
-        action.run
+        workflow.run
       end
 
       it "takes the response from the gateway" do
-        expect(action.payment).to have_attributes(
+        expect(workflow.payment).to have_attributes(
             status: "succeeded", response_id: a_string_starting_with("ch_"),
-            full_response: action.stripe_charge.response.to_json)
+            full_response: workflow.stripe_charge.response.to_json)
       end
     end
 
@@ -35,12 +35,12 @@ describe ExecutesStripePurchase, :vcr, :aggregate_failures do
         affiliate_workflow.run
         payment.update(
             affiliate_id: affiliate.id, affiliate_payment_cents: 125)
-        action.run
+        workflow.run
       end
 
       it "takes the response from the gateway" do
-        response = action.stripe_charge.response
-        expect(action.payment).to have_attributes(
+        response = workflow.stripe_charge.response
+        expect(workflow.payment).to have_attributes(
             status: "succeeded", response_id: a_string_starting_with("ch_"),
             full_response: response.to_json)
         fee = Stripe::ApplicationFee.retrieve(response.application_fee)
@@ -58,14 +58,14 @@ describe ExecutesStripePurchase, :vcr, :aggregate_failures do
         expiration_year: Time.zone.now.year + 1, cvc: "123") }
 
     before(:example) do
-      expect(action).to receive(:unpurchase_tickets)
-      action.run
+      expect(workflow).to receive(:unpurchase_tickets)
+      workflow.run
     end
 
     it "takes the response from the gateway" do
-      expect(action.payment).to have_attributes(
+      expect(workflow.payment).to have_attributes(
           status: "failed", response_id: nil,
-          full_response: action.stripe_charge.error.to_json)
+          full_response: workflow.stripe_charge.error.to_json)
     end
   end
 
