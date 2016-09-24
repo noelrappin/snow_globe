@@ -1,6 +1,6 @@
 class AddsAffiliateAccount
 
-  attr_accessor :user, :affiliate, :success, :tos_checked, :request_ip
+  attr_accessor :user, :affiliate, :success, :tos_checked, :request_ip, :account
 
   def initialize(user:, tos_checked: nil, request_ip: nil)
     @user = user
@@ -15,13 +15,15 @@ class AddsAffiliateAccount
           user: user, country: "US",
           name: user.name, tag: Affiliate.generate_tag)
       @affiliate.update(stripe_id: acquire_stripe_id)
+      account.update_affiliate_verification
     end
     @success = true
   end
 
   def acquire_stripe_id
-    StripeAccount.new(
-        @affiliate, tos_checked: tos_checked, request_ip: request_ip).account.id
+    @account = StripeAccount.new(
+        @affiliate, tos_checked: tos_checked, request_ip: request_ip)
+    account.account.id
   end
 
   def success?

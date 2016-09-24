@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160911221328) do
+ActiveRecord::Schema.define(version: 20160923204055) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,8 +46,12 @@ ActiveRecord::Schema.define(version: 20160911221328) do
     t.string   "stripe_id"
     t.string   "tag"
     t.json     "verification_needed"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.boolean  "stripe_charges_enabled",   default: false
+    t.boolean  "stripe_transfers_enabled", default: false
+    t.string   "stripe_disabled_reason"
+    t.datetime "stripe_validation_due_by"
     t.index ["user_id"], name: "index_affiliates_on_user_id", using: :btree
   end
 

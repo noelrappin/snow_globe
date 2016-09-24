@@ -26,7 +26,7 @@ class StripeCharge
         amount: payment.price.cents, currency: "usd",
         source: token.id, description: "",
         metadata: {reference: payment.reference}}
-    if payment.affiliate.present?
+    if payment.active_affiliate.present?
       parameters[:destination] = payment.affiliate.stripe_id
       parameters[:application_fee] = payment.application_fee.cents
     end

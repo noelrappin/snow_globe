@@ -2,10 +2,11 @@ class StripeAccount
 
   attr_accessor :affiliate, :account, :tos_checked, :request_ip
 
-  def initialize(affiliate, tos_checked:, request_ip:)
+  def initialize(affiliate, tos_checked: false, request_ip: nil, account: nil)
     @affiliate = affiliate
     @tos_checked = tos_checked
     @request_ip = request_ip
+    @account = account
   end
 
   def account
@@ -14,6 +15,34 @@ class StripeAccount
         create_account
       else
         retrieve_account
+      end
+    end
+  end
+
+  def update(values)
+    update_from_hash(account, values)
+    self.account = account.save
+    update_affiliate_verification
+  end
+
+  def update_affiliate_verification
+    Affiliate.transaction do
+      affiliate.update(
+          stripe_charges_enabled: account.charges_enabled,
+          stripe_transfers_enabled: account.transfers_enabled,
+          stripe_disabled_reason: account.verification.disabled_reason,
+          stripe_validation_due_by: account.verification.due_by,
+          verification_needed: account.verification.fields_needed)
+    end
+  end
+
+  private def update_from_hash(object, values)
+    values.each do |key, value|
+      if value.is_a?(Hash)
+        sub_object = object.send(key.to_sym)
+        update_from_hash(sub_object, value)
+      elsif value.present?
+        object.send(:"#{key}=", value)
       end
     end
   end

@@ -97,4 +97,8 @@ class Payment < ActiveRecord::Base
   end
   # END: affiliate
 
+  def active_affiliate
+    affiliate&.stripe_charges_enabled ? affiliate : nil
+  end
+
 end

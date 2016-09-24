@@ -18,5 +18,6 @@
 //= require turbolinks
 //= require jquery.cardswipe
 //= require purchases_cart
+//= require edits_affiliate
 //= require_tree .
 // END: manifest
