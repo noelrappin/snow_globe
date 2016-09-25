@@ -9,6 +9,7 @@ class AddsAffiliateAccount
     @success = false
   end
 
+  # START: verification
   def run
     Affiliate.transaction do
       @affiliate = Affiliate.create(
@@ -25,6 +26,7 @@ class AddsAffiliateAccount
         @affiliate, tos_checked: tos_checked, request_ip: request_ip)
     account.account.id
   end
+  # END: verification
 
   def success?
     @success

@@ -7,10 +7,13 @@ class AffiliatesController < ApplicationController
     @affiliate = Affiliate.find(params[:id])
   end
 
+  # START: edit
   def edit
     @affiliate = Affiliate.find(params[:id])
   end
+  # END: edit
 
+  # START: update
   def update
     @affiliate = Affiliate.find(params[:id])
     workflow = UpdatesAffiliateAccount.new(
@@ -23,6 +26,7 @@ class AffiliatesController < ApplicationController
       render :edit
     end
   end
+  # END: update
 
   def create
     workflow = AddsAffiliateAccount.new(

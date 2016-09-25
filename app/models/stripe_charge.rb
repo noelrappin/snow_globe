@@ -11,7 +11,6 @@ class StripeCharge
     @payment = payment
   end
 
-  # START: affiliate
   def charge
     return if response.present?
     @response = Stripe::Charge.create(
@@ -21,6 +20,7 @@ class StripeCharge
     @error = e
   end
 
+  # START: affiliate
   def charge_parameters
     parameters = {
         amount: payment.price.cents, currency: "usd",

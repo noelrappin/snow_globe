@@ -19,12 +19,7 @@ class StripeAccount
     end
   end
 
-  def update(values)
-    update_from_hash(account, values)
-    self.account = account.save
-    update_affiliate_verification
-  end
-
+  # START: verfication
   def update_affiliate_verification
     Affiliate.transaction do
       affiliate.update(
@@ -34,6 +29,14 @@ class StripeAccount
           stripe_validation_due_by: account.verification.due_by,
           verification_needed: account.verification.fields_needed)
     end
+  end
+  # END: verfication
+
+  # START: update
+  def update(values)
+    update_from_hash(account, values)
+    self.account = account.save
+    update_affiliate_verification
   end
 
   private def update_from_hash(object, values)
@@ -46,6 +49,7 @@ class StripeAccount
       end
     end
   end
+  # END: update
 
   private def create_account
     account_params = {country: affiliate.country, managed: true}

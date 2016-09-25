@@ -90,15 +90,15 @@ class Payment < ActiveRecord::Base
     partials.fetch(:sales_tax, {}).values.sum
   end
 
-  # START: affiliate
   def application_fee
     return Money.zero if affiliate.blank?
     price - affiliate_payment
   end
-  # END: affiliate
-
+  
+  # START: affiliate
   def active_affiliate
     affiliate&.stripe_charges_enabled ? affiliate : nil
   end
+  # END: affiliate
 
 end
