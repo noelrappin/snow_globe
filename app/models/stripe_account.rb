@@ -19,7 +19,7 @@ class StripeAccount
     end
   end
 
-  # START: verfication
+  # START: verification
   def update_affiliate_verification
     Affiliate.transaction do
       affiliate.update(
@@ -30,7 +30,7 @@ class StripeAccount
           verification_needed: account.verification.fields_needed)
     end
   end
-  # END: verfication
+  # END: verification
 
   # START: update
   def update(values)
