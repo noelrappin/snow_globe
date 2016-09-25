@@ -94,7 +94,7 @@ class Payment < ActiveRecord::Base
     return Money.zero if affiliate.blank?
     price - affiliate_payment
   end
-  
+
   # START: affiliate
   def active_affiliate
     affiliate&.stripe_charges_enabled ? affiliate : nil
