@@ -1,3 +1,4 @@
+// # START: affilaite_form
 class AffilateForm {
 
   form() { return $("#affiliate-form") }
@@ -27,7 +28,9 @@ class AffilateForm {
     this.form().prepend(field)
   }
 }
+// # END: affiliate_form
 
+// # START: affiliate_form_handler
 class AffiliateFormHandler {
 
   constructor() {
@@ -52,7 +55,9 @@ class AffiliateFormHandler {
     return false
   }
 }
+// # END: affiliate_form_handler
 
+// # START: bank_account_token_handler
 class BankAccountTokenHandler {
   static handle(status, response) {
     new BankAccountTokenHandler(status, response).handle()
@@ -77,12 +82,13 @@ class BankAccountTokenHandler {
     }
   }
 }
+// # END: bank_account_token_handler
 
-
+// # START: init
 $(() => {
   if ($(".bank_account_form").size() > 0) {
     return new AffiliateFormHandler()
   }
-
   return null
 })
+// # END: init
