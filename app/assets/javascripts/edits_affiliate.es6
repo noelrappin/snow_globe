@@ -1,4 +1,4 @@
-// # START: affilaite_form
+// # START: affiliate_form
 class AffilateForm {
 
   form() { return $("#affiliate-form") }
