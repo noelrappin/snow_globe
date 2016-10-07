@@ -12,12 +12,14 @@ class RefundsController < ApplicationController
     redirect_to redirect_path
   end
 
+  # START: brakeman
   VALID_REFUNDABLES = %w(Payment PaymentLineItem).freeze
 
   private def load_refundable
     raise "bad refundable class" unless params[:type].in?(VALID_REFUNDABLES)
     @refundable = params[:type].constantize.find(params[:id])
   end
+  # END: brakeman
 
   private def redirect_path
     params[:type] == if params[:type] == "Payment"
