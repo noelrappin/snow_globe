@@ -28,6 +28,7 @@ gem "tax_cloud"
 gem "turbolinks"
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "uglifier"
+gem 'whenever', :require => false
 
 # START: active_admin
 gem "activeadmin", github: "activeadmin/activeadmin"
