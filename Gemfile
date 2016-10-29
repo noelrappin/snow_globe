@@ -15,7 +15,7 @@ gem "puma"
 gem "pundit"
 gem "sass-rails"
 gem "simple_form"
-gem "slim-rails"
+gem "slim-rails", github: "slim-template/slim-rails"
 gem "sprockets", github: "rails/sprockets"
 gem "turbolinks"
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
