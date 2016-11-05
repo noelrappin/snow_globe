@@ -18,4 +18,12 @@ class StripeToken
 
   delegate :id, to: :token
 
+  def to_s
+    "STRIPE TOKEN: #{id}"
+  end
+
+  def inspect
+    "STRIPE TOKEN #{id}"
+  end
+
 end
