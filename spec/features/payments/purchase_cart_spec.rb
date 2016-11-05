@@ -1,4 +1,5 @@
 require "rails_helper"
+<<<<<<< HEAD
 require "fake_stripe"
 
 # START: describe_with_js
@@ -15,6 +16,12 @@ describe "purchasing a cart", :js do
     Stripe.api_key = Rails.application.secrets.stripe_secret_key
   end
 
+=======
+
+describe "purchasing a cart", :vcr do
+  fixtures :all
+
+>>>>>>> server_charge_01
   it "can add a purchase to a cart" do
     tickets(:midsummer_bums_1).place_in_cart_for(users(:buyer))
     tickets(:midsummer_bums_2).place_in_cart_for(users(:buyer))
