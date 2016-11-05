@@ -4,7 +4,6 @@ describe PurchasesCart do
 
   describe "successful credit card purchase", :vcr do
     let(:reference) { Payment.generate_reference }
-  describe "successful credit card purchase" do
     let(:ticket_1) { instance_spy(
         Ticket, status: "waiting", price: Money.new(1500), id: 1) }
     let(:ticket_2) { instance_spy(
