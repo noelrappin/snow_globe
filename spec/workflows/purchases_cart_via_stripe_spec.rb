@@ -108,7 +108,7 @@ describe PurchasesCartViaStripe, :vcr, :aggregate_failures do
           user: user, purchase_amount_cents: 3000, stripe_token: token,
           expected_ticket_ids: "1 3") }
 
-      it "does not payment if the expected tickets are incorrect" do
+      it "does not trigger payment if the expected tickets are incorrect" do
         workflow.run
         expect(workflow).not_to be_pre_purchase_valid
         expect(ticket_1).not_to have_received(:purchased!)
@@ -121,7 +121,7 @@ describe PurchasesCartViaStripe, :vcr, :aggregate_failures do
 
     # START: database_failure
     describe "database failure" do
-      it "does not payment if the database fails" do
+      it "does not trigger payment if the database fails" do
         expect(StripeCharge).to receive(:new).never
         allow(Payment).to receive(:create!).and_raise(
             ActiveRecord::RecordInvalid)
