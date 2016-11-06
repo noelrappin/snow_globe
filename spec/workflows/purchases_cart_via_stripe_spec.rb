@@ -109,15 +109,15 @@ describe PurchasesCartViaStripe, :vcr, :aggregate_failures do
     end
 
     # START: database_failure
-    # describe "database failure" do
-    #   it "does not payment if the database fails" do
-    #     expect(StripeCharge).to receive(:new).never
-    #     allow(Payment).to receive(:create!).and_raise
-    #     begin
-    #     workflow.run
-    #     expect(workflow.success).to be_falsy
-    #   end
-    # end
+    describe "database failure" do
+      it "does not payment if the database fails" do
+        expect(StripeCharge).to receive(:new).never
+        allow(Payment).to receive(:create!).and_raise(
+            ActiveRecord::RecordInvalid)
+        workflow.run
+        expect(workflow.success).to be_falsy
+      end
+    end
     # END: database_failure
   end
 end
