@@ -33,7 +33,7 @@ class PreparesCart
   # START: run_with_exception
   def run
     Payment.transaction do
-      raise PreExistingPurchaseException.new(purchase) if existing_payment
+      raise PreExistingPaymentException.new(purchase) if existing_payment
       unless pre_purchase_valid?
         raise ChargeSetupValidityException.new(
             user: user,

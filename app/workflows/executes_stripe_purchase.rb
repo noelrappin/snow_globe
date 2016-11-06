@@ -25,13 +25,15 @@ class ExecutesStripePurchase
   end
   # END: integrate_mailers
 
+  # START: run_with_exception
   def charge
-    return :present if payment.response_id.present?
+    raise PreExistingPaymentException if payment.response_id.present?
     @stripe_charge = StripeCharge.new(token: stripe_token, payment: payment)
     @stripe_charge.charge
     payment.update!(@stripe_charge.payment_attributes)
     payment.succeeded?
   end
+  # END: run_with_exception
 
   def unpurchase_tickets
     payment.tickets.each(&:waiting!)
