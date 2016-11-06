@@ -24,13 +24,11 @@ class ExecutesStripePurchase
   # END: integrate_mailers
 
   def charge
-    Payment.transaction do
-      return if payment.response_id.present?
-      @stripe_charge = StripeCharge.new(token: stripe_token, payment: payment)
-      @stripe_charge.charge
-      payment.update!(@stripe_charge.payment_attributes)
-      payment.succeeded?
-    end
+    return :present if payment.response_id.present?
+    @stripe_charge = StripeCharge.new(token: stripe_token, payment: payment)
+    @stripe_charge.charge
+    payment.update!(@stripe_charge.payment_attributes)
+    payment.succeeded?
   end
 
   def unpurchase_tickets
