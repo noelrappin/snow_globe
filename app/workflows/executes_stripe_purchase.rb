@@ -8,18 +8,18 @@ class ExecutesStripePurchase
   end
 
   def run
-    result = charge
-    on_failure unless result
+    Payment.transaction do
+      result = charge
+      on_failure unless result
+    end
   end
 
   def charge
-    Payment.transaction do
-      return if payment.response_id.present?
-      @stripe_charge = StripeCharge.new(token: stripe_token, payment: payment)
-      @stripe_charge.charge
-      payment.update!(@stripe_charge.payment_attributes)
-      payment.succeeded?
-    end
+    return :present if payment.response_id.present?
+    @stripe_charge = StripeCharge.new(token: stripe_token, payment: payment)
+    @stripe_charge.charge
+    payment.update!(@stripe_charge.payment_attributes)
+    payment.succeeded?
   end
 
   def unpurchase_tickets
