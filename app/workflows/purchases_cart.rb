@@ -15,7 +15,6 @@ class PurchasesCart
     @expected_ticket_ids = expected_ticket_ids.split(" ").map(&:to_i).sort
     @payment_reference = payment_reference || Payment.generate_reference
   end
-  ## END: purchases_cart_init
 
   def run
     Payment.transaction do
@@ -24,10 +23,8 @@ class PurchasesCart
       post_purchase
       @success = @continue
     end
-  rescue ActiveRecord::ActiveRecordError => e
-    Rails.logger.error("ACTIVE RECORD ERROR IN TRANSACTION")
-    Rails.logger.error(e)
   end
+  ## END: purchases_cart_init
 
   def pre_purchase_valid?
     purchase_amount == tickets.map(&:price).sum &&

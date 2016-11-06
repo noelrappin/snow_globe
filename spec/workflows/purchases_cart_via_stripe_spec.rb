@@ -125,8 +125,8 @@ describe PurchasesCartViaStripe, :vcr, :aggregate_failures do
         expect(StripeCharge).to receive(:new).never
         allow(Payment).to receive(:create!).and_raise(
             ActiveRecord::RecordInvalid)
-        workflow.run
-        expect(workflow.success).to be_falsy
+        expect { workflow.run }.to raise_error(
+            ActiveRecord::ActiveRecordError)
       end
     end
     # END: database_failure
