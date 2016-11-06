@@ -5,22 +5,22 @@ http_interactions:
     uri: https://api.stripe.com/v1/tokens
     body:
       encoding: UTF-8
-      string: card[cvc]=123&card[exp_month]=12&card[exp_year]=2017&card[number]=4000000000000002
+      string: card[number]=4000000000000002&card[exp_month]=12&card[exp_year]=2017&card[cvc]=123
     headers:
       Accept:
       - "*/*"
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - Stripe/v1 RubyBindings/1.48.0
+      - Stripe/v1 RubyBindings/1.56.0
       Authorization:
       - Bearer sk_test_cQ27CjeGmTY8IYOdtcVFu0RD
       Content-Type:
       - application/x-www-form-urlencoded
       X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"1.48.0","lang":"ruby","lang_version":"2.3.1 p112 (2016-04-26)","platform":"x86_64-darwin15","engine":"ruby","publisher":"stripe","uname":"Darwin
-        Noels-Computer.local 15.6.0 Darwin Kernel Version 15.6.0: Thu Jun 23 18:25:34
-        PDT 2016; root:xnu-3248.60.10~1/RELEASE_X86_64 x86_64","hostname":"Noels-Computer.local"}'
+      - '{"bindings_version":"1.56.0","lang":"ruby","lang_version":"2.3.1 p112 (2016-04-26)","platform":"x86_64-darwin16","engine":"ruby","publisher":"stripe","uname":"Darwin
+        Noels-Computer.local 16.1.0 Darwin Kernel Version 16.1.0: Thu Oct 13 21:26:57
+        PDT 2016; root:xnu-3789.21.3~60/RELEASE_X86_64 x86_64","hostname":"Noels-Computer.local"}'
       Content-Length:
       - '82'
       Host:
@@ -33,7 +33,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Sat, 30 Jul 2016 15:45:01 GMT
+      - Sun, 06 Nov 2016 18:00:10 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -51,7 +51,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_8upIJ7WOuVtWM6
+      - req_9Vwpu1TMznzddT
       Stripe-Version:
       - '2016-07-06'
       Strict-Transport-Security:
@@ -60,10 +60,10 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "tok_18cze4DTh2DhiR4RsCOlp6fE",
+          "id": "tok_19CuwADTh2DhiR4RIULGqYTx",
           "object": "token",
           "card": {
-            "id": "card_18cze4DTh2DhiR4RqI1dIw43",
+            "id": "card_19CuwADTh2DhiR4RGpJ83wGr",
             "object": "card",
             "address_city": null,
             "address_country": null,
@@ -87,36 +87,36 @@ http_interactions:
             "tokenization_method": null
           },
           "client_ip": "24.13.236.96",
-          "created": 1469893500,
+          "created": 1478455210,
           "livemode": false,
           "type": "card",
           "used": false
         }
-    http_version:
-  recorded_at: Sat, 30 Jul 2016 15:45:01 GMT
+    http_version: 
+  recorded_at: Sun, 06 Nov 2016 18:00:10 GMT
 - request:
     method: post
     uri: https://api.stripe.com/v1/charges
     body:
       encoding: UTF-8
-      string: amount=2500&currency=usd&description=&metadata[reference]=91e9969ff6f41e868de3&source=tok_18cze4DTh2DhiR4RsCOlp6fE
+      string: amount=2500&currency=usd&source=tok_19CuwADTh2DhiR4RIULGqYTx&description=&metadata[reference]=2dd2832b9e0c0eaf84f6
     headers:
       Accept:
       - "*/*"
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - Stripe/v1 RubyBindings/1.48.0
+      - Stripe/v1 RubyBindings/1.56.0
       Authorization:
       - Bearer sk_test_cQ27CjeGmTY8IYOdtcVFu0RD
       Content-Type:
       - application/x-www-form-urlencoded
       X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"1.48.0","lang":"ruby","lang_version":"2.3.1 p112 (2016-04-26)","platform":"x86_64-darwin15","engine":"ruby","publisher":"stripe","uname":"Darwin
-        Noels-Computer.local 15.6.0 Darwin Kernel Version 15.6.0: Thu Jun 23 18:25:34
-        PDT 2016; root:xnu-3248.60.10~1/RELEASE_X86_64 x86_64","hostname":"Noels-Computer.local"}'
+      - '{"bindings_version":"1.56.0","lang":"ruby","lang_version":"2.3.1 p112 (2016-04-26)","platform":"x86_64-darwin16","engine":"ruby","publisher":"stripe","uname":"Darwin
+        Noels-Computer.local 16.1.0 Darwin Kernel Version 16.1.0: Thu Oct 13 21:26:57
+        PDT 2016; root:xnu-3789.21.3~60/RELEASE_X86_64 x86_64","hostname":"Noels-Computer.local"}'
       Idempotency-Key:
-      - 91e9969ff6f41e868de3
+      - 2dd2832b9e0c0eaf84f6
       Content-Length:
       - '114'
       Host:
@@ -129,7 +129,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Sat, 30 Jul 2016 15:45:01 GMT
+      - Sun, 06 Nov 2016 18:00:11 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -147,11 +147,11 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Idempotency-Key:
-      - 91e9969ff6f41e868de3
+      - 2dd2832b9e0c0eaf84f6
       Original-Request:
-      - req_8upItcUfK1TRH0
+      - req_9Vwp8XcLy8WI6B
       Request-Id:
-      - req_8upItcUfK1TRH0
+      - req_9Vwp8XcLy8WI6B
       Stripe-Version:
       - '2016-07-06'
     body:
@@ -162,9 +162,9 @@ http_interactions:
             "message": "Your card was declined.",
             "type": "card_error",
             "code": "card_declined",
-            "charge": "ch_18cze5DTh2DhiR4RZU6XRYR5"
+            "charge": "ch_19CuwADTh2DhiR4ReuMTQ7Rq"
           }
         }
-    http_version:
-  recorded_at: Sat, 30 Jul 2016 15:45:01 GMT
+    http_version: 
+  recorded_at: Sun, 06 Nov 2016 18:00:11 GMT
 recorded_with: VCR 3.0.3
