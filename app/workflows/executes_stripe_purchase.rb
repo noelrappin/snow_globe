@@ -9,8 +9,10 @@ class ExecutesStripePurchase
 
   # START: integrate_mailers
   def run
-    result = charge
-    result ? on_success : on_failure
+    Payment.transaction do
+      result = charge
+      result ? on_success : on_failure
+    end
   end
 
   def on_success
