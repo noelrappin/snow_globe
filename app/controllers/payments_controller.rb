@@ -15,6 +15,7 @@ class PaymentsController < ApplicationController
     end
   end
 
+  # START: choose_workflow
   private def run_workflow(payment_type, purchase_type)
     case purchase_type
     when "SubscriptionCart"
@@ -31,6 +32,16 @@ class PaymentsController < ApplicationController
     else
       current_user
     end
+  end
+  # END: choose_workflow
+
+  private def stripe_subscription_workflow
+    workflow = CreatesSubscriptionViaStripe.new(
+        user: current_user,
+        expected_subscription_id: params[:subscription_ids].first,
+        token: StripeToken.new(**card_params))
+    workflow.run
+    workflow
   end
 
   private def stripe_subscription_workflow
@@ -55,10 +66,7 @@ class PaymentsController < ApplicationController
   private def stripe_workflow
     @reference = Payment.generate_reference
     PreparesCartForStripeJob.perform_later(
-        user: current_user,
-        params: card_params,
-        purchase_amount_cents: params[:purchase_amount_cents],
-        expected_ticket_ids: params[:ticket_ids],
+        user: current_user, params: params.to_h,
         payment_reference: @reference)
   end
 
