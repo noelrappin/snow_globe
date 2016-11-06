@@ -24,6 +24,9 @@ class PurchasesCart
       post_purchase
       @success = @continue
     end
+  rescue ActiveRecord::ActiveRecordError => e
+    Rails.logger.error("ACTIVE RECORD ERROR IN TRANSACTION")
+    Rails.logger.error(e)
   end
 
   def pre_purchase_valid?

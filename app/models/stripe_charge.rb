@@ -20,7 +20,7 @@ class StripeCharge
          source: token.id, description: "",
          metadata: {reference: payment.reference}},
         idempotency_key: payment.reference)
-  rescue Stripe::CardError => e
+  rescue Stripe::StripeError => e
     @response = nil
     @error = e
   end
