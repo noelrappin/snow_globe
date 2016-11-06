@@ -33,16 +33,6 @@ class PaymentsController < ApplicationController
       current_user
     end
   end
-  # END: choose_workflow
-
-  private def stripe_subscription_workflow
-    workflow = CreatesSubscriptionViaStripe.new(
-        user: current_user,
-        expected_subscription_id: params[:subscription_ids].first,
-        token: StripeToken.new(**card_params))
-    workflow.run
-    workflow
-  end
 
   private def stripe_subscription_workflow
     workflow = CreatesSubscriptionViaStripe.new(
