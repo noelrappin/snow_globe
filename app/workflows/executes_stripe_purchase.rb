@@ -9,8 +9,10 @@ class ExecutesStripePurchase
 
   # START: integrate_mailers
   def run
-    result = charge
-    result ? on_success : on_failure
+    Payment.transaction do
+      result = charge
+      result ? on_success : on_failure
+    end
   end
 
   def on_success
@@ -23,15 +25,15 @@ class ExecutesStripePurchase
   end
   # END: integrate_mailers
 
+  # START: run_with_exception
   def charge
-    Payment.transaction do
-      return if payment.response_id.present?
-      @stripe_charge = StripeCharge.new(token: stripe_token, payment: payment)
-      @stripe_charge.charge
-      payment.update!(@stripe_charge.payment_attributes)
-      payment.succeeded?
-    end
+    raise PreExistingPaymentException if payment.response_id.present?
+    @stripe_charge = StripeCharge.new(token: stripe_token, payment: payment)
+    @stripe_charge.charge
+    payment.update!(@stripe_charge.payment_attributes)
+    payment.succeeded?
   end
+  # END: run_with_exception
 
   def unpurchase_tickets
     payment.tickets.each(&:waiting!)
