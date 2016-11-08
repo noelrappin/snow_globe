@@ -47,10 +47,9 @@ class TicketPaymentConsistency < SimpleDelegator
 
   def amount_consistent
     expected = payment_line_items.map(&:price) - discount
-    if expected != price
-      @errors >>
-          "Purchase #{id}, expected price #{expected} actual price #{price}"
-    end
+    return if expected == price
+    @errors >>
+        "Purchase #{id}, expected price #{expected} actual price #{price}"
   end
 
 end
