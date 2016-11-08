@@ -22,6 +22,7 @@ class PaymentsController < ApplicationController
   end
   # END: with_discount
 
+  # START: choose_workflow
   private def run_workflow(payment_type, purchase_type)
     case purchase_type
     when "SubscriptionCart"
