@@ -45,13 +45,12 @@ ActiveAdmin.register User do
       else
         @user.update_attributes(permitted_params[:user])
       end
-      if @user.admin? && params[:user][:cellphone_number].present?
-        authy = Authy::API.register_user(
-            email: @user.email,
-            cellphone: params[:user][:cellphone_number],
-            country_code: "1")
-        @user.update(authy_id: authy.id) if authy
-      end
+      return if @user.admin? && params[:user][:cellphone_number].blank?
+      authy = Authy::API.register_user(
+          email: @user.email,
+          cellphone: params[:user][:cellphone_number],
+          country_code: "1")
+      @user.update(authy_id: authy.id) if authy
     end
   end
 end

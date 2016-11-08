@@ -32,4 +32,12 @@ class StripeToken
                exp_year: expiration_year, cvc: cvc})
   end
 
+  def to_s
+    "STRIPE TOKEN: #{id}"
+  end
+
+  def inspect
+    "STRIPE TOKEN #{id}"
+  end
+
 end
