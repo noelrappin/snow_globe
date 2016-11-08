@@ -2,6 +2,7 @@ class Users::SessionsController < Devise::SessionsController
 
   # START: skip_before
   skip_before_action :set_paper_trail_whodunnit
+  skip_after_action :warn_about_not_setting_whodunnit
   # END: skip_before
 
   skip_after_action :warn_about_not_setting_whodunnit
