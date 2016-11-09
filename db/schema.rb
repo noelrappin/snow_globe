@@ -178,8 +178,8 @@ ActiveRecord::Schema.define(version: 20160923204055) do
     t.integer  "address_id"
     t.integer  "shipping_method",  default: 0
     t.integer  "discount_code_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.integer  "affiliate_id"
     t.index ["address_id"], name: "index_shopping_carts_on_address_id", using: :btree
     t.index ["affiliate_id"], name: "index_shopping_carts_on_affiliate_id", using: :btree
