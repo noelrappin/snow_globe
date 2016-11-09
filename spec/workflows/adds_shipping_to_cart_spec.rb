@@ -20,7 +20,7 @@ describe AddsShippingToCart do
     workflow.run
     cart = ShoppingCart.for(user: user)
     expect(cart.address).to be_nil
-    expect(cart.shipping_method).to be_nil
+    expect(cart.shipping_method).to eq("electronic")
     expect(workflow).not_to be_a_success
   end
 
