@@ -16,7 +16,7 @@ class StripeCharge
     return if response.present?
     @response = Stripe::Charge.create(
         charge_parameters, idempotency_key: payment.reference)
-  rescue Stripe::CardError => e
+  rescue Stripe::StripeError => e
     @response = nil
     @error = e
   end
