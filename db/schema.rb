@@ -176,7 +176,7 @@ ActiveRecord::Schema.define(version: 20160923204055) do
   create_table "shopping_carts", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "address_id"
-    t.integer  "shipping_method"
+    t.integer  "shipping_method",  default: 0
     t.integer  "discount_code_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
