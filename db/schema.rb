@@ -156,10 +156,10 @@ ActiveRecord::Schema.define(version: 20160903180301) do
   create_table "shopping_carts", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "address_id"
-    t.integer  "shipping_method"
+    t.integer  "shipping_method",  default: 0
     t.integer  "discount_code_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.index ["address_id"], name: "index_shopping_carts_on_address_id", using: :btree
     t.index ["discount_code_id"], name: "index_shopping_carts_on_discount_code_id", using: :btree
     t.index ["user_id"], name: "index_shopping_carts_on_user_id", using: :btree

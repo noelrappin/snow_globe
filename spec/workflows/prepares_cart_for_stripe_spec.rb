@@ -29,7 +29,7 @@ describe PreparesCartForStripe, :vcr, :aggregate_failures do
       expected_ticket_ids: "#{ticket_1.id} #{ticket_2.id}",
       payment_reference: "reference", stripe_token: token,
       shopping_cart: shopping_cart) }
-  let(:attributes) {{
+  let(:attributes) { {
       user_id: user.id, price_cents: 3100,
       reference: a_truthy_value, status: "created",
       discount_code_id: nil,

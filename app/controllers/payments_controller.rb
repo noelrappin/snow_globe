@@ -17,6 +17,7 @@ class PaymentsController < ApplicationController
     end
   end
 
+  # START: choose_workflow
   private def run_workflow(payment_type, purchase_type)
     case purchase_type
     when "SubscriptionCart" then stripe_subscription_workflow
