@@ -146,6 +146,7 @@ ActiveRecord::Schema.define(version: 20160923204055) do
     t.index ["affiliate_id"], name: "index_payments_on_affiliate_id", using: :btree
     t.index ["discount_code_id"], name: "index_payments_on_discount_code_id", using: :btree
     t.index ["original_payment_id"], name: "index_payments_on_original_payment_id", using: :btree
+    t.index ["reference"], name: "index_payments_on_reference", using: :btree
     t.index ["user_id"], name: "index_payments_on_user_id", using: :btree
   end
 
