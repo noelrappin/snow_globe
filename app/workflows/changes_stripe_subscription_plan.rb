@@ -1,4 +1,4 @@
-class ChangesStripeSubsriptionPlan
+class ChangesStripeSubscriptionPlan
 
   attr_accessor :subscription, :user
 
