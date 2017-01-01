@@ -36,6 +36,6 @@ ActiveAdmin.register Payment do
         refund_path(id: payment.id, type: Payment),
         method: "POST",
         class: "button",
-        data: {confirm: "Are you sure you want refund this payment?"})
+        data: {confirm: "Are you sure you want to refund this payment?"})
   end
 end
