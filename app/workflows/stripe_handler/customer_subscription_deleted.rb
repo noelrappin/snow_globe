@@ -4,7 +4,7 @@ module StripeHandler
 
     attr_accessor :event, :success, :payment
 
-    def intialize(event)
+    def initialize(event)
       @event = event
       @success = false
     end
