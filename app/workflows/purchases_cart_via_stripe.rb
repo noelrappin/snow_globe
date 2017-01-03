@@ -23,7 +23,7 @@ class PurchasesCartViaStripe < PurchasesCart
     reverse_purchase if payment.failed?
   end
 
-  def purchase_attributes
+  def payment_attributes
     super.merge(payment_method: "stripe")
   end
 
