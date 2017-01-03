@@ -5,9 +5,9 @@ namespace :snow_globe do
       TicketPaymentConsistency.new(payment).consistent?
     end
     if inconsistent.empty?
-      ConistencyMailer.all_is_well.deliver
+      ConsistencyMailer.all_is_well.deliver
     else
-      ConistencyMailer.inconsistencies_detected(inconsistent).deliver
+      ConsistencyMailer.inconsistencies_detected(inconsistent).deliver
     end
   end
 
