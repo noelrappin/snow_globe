@@ -80,7 +80,7 @@ class PriceCalculator
     base_price * 0.05
   end
 
-  def affliate_application_fee
+  def affiliate_application_fee
     total_price - affiliate_payment
   end
 

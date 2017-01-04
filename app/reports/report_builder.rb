@@ -101,7 +101,7 @@ class ReportBuilder
 
     def build_header
       add_byte_order_mark
-      reuturn unless options.fetch(:column_names, true)
+      return unless options.fetch(:column_names, true)
       headers = columns.map { |column| encode(column.name, options) }
       output << CSV.generate_line(headers, options)
     end
