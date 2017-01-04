@@ -11,28 +11,19 @@ class StripeCharge
     @payment = payment
   end
 
-  # START: affiliate
+  # START: payment_attributes
+
   def charge
     return if response.present?
     @response = Stripe::Charge.create(
-        charge_parameters, idempotency_key: payment.reference)
+        {amount: payment.price.cents, currency: "usd",
+         source: token.id, description: "",
+         metadata: {reference: payment.reference}},
+        idempotency_key: payment.reference)
   rescue Stripe::StripeError => e
     @response = nil
     @error = e
   end
-
-  def charge_parameters
-    parameters = {
-        amount: payment.price.cents, currency: "usd",
-        source: token.id, description: "",
-        metadata: {reference: payment.reference}}
-    if payment.affiliate.present?
-      parameters[:destination] = payment.affiliate.stripe_id
-      parameters[:application_fee] = payment.application_fee.cents
-    end
-    parameters
-  end
-  # END: affiliate
 
   def success?
     response || !error
@@ -50,5 +41,6 @@ class StripeCharge
   def failure_attributes
     {status: :failed, full_response: error.to_json}
   end
+  # END: payment_attributes
 
 end

@@ -4,7 +4,7 @@ RSpec.describe AddsAffiliateAccount, :vcr do
 
   let(:user) { create(:user) }
 
-  describe "creates a stripe affiliate from a user" do
+  describe "creates an affiliate from a user" do
 
     let(:workflow) { AddsAffiliateAccount.new(user: user) }
 
