@@ -8,7 +8,7 @@ class Affiliate < ApplicationRecord
     generate_reference(length: 5, attribute: :tag)
   end
 
-  def verfication_needed?
+  def verification_needed?
     verification_needed.size.positive?
   end
 

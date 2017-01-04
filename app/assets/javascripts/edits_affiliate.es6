@@ -1,5 +1,5 @@
 // # START: affiliate_form
-class AffilateForm {
+class AffiliateForm {
 
   form() { return $("#affiliate-form") }
 
@@ -34,7 +34,7 @@ class AffilateForm {
 class AffiliateFormHandler {
 
   constructor() {
-    this.affiliateForm = new AffilateForm()
+    this.affiliateForm = new AffiliateForm()
     this.initEventHandlers()
   }
 
@@ -64,7 +64,7 @@ class BankAccountTokenHandler {
   }
 
   constructor(status, response) {
-    this.affiliateForm = new AffilateForm()
+    this.affiliateForm = new AffiliateForm()
     this.status = status
     this.response = response
   }

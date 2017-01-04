@@ -6,7 +6,7 @@ h2 Due by: #{@affiliate.stripe_validation_due_by}
 
   - @affiliate.verification_form_names.each do |field_name|
     - if field_name == "account[external_account]"
-      = render "affilliate/edit/bank_account_form"
+      = render "affiliate/edit/bank_account_form"
     - else
       .row
         .form-group
@@ -16,4 +16,4 @@ h2 Due by: #{@affiliate.stripe_validation_due_by}
             = text_field_tag(field_name, "", class: "form-control")
   .row
     .form-group
-      = f.submit("Make Me An Affiliate", class: "btn btn-default")
+      = f.submit("Make Me an Affiliate", class: "btn btn-default")
